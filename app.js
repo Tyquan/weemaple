@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
@@ -21,7 +22,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
+app.use(morgan('dev'));
+app.use(express.static(`${__dirname}/public`));
+app.set('views', path.join(__dirname, 'views'));
+//app.engine('view engine', engine);
+app.set('view engine', 'pug');
 
+// Routes
 app.use('/', index);
 
 module.exports = app;

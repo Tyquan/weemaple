@@ -16,6 +16,10 @@ const UserSchema = new mongoose.Schema({
 	coursesTaken: [{
 		course: {type: Schema.Types.ObjectId, ref: 'Course'}
 	}],
+	dateCreated: {
+		type: Date,
+		default: Date.now
+	}
 });
 
 const User = monggose.model('User', UserSchema);
