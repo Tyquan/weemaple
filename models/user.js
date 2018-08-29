@@ -6,15 +6,21 @@ const UserSchema = new mongoose.Schema({
 		unique: true,
 		lowercase: true
 	},
+	facebook: {
+		type: String
+	},
+	tokens: {
+		type: Array
+	},
 	profile: {
 		name: {type: String, default: ''},
 		picture: {type: String, default: ''}
 	},
 	coursesTaught: [{
-		course: {type: Schema.Types.ObjectId, ref: 'Course'}
+		course: {type: mongoose.Schema.Types.ObjectId, ref: 'Course'}
 	}],
 	coursesTaken: [{
-		course: {type: Schema.Types.ObjectId, ref: 'Course'}
+		course: {type: mongoose.Schema.Types.ObjectId, ref: 'Course'}
 	}],
 	dateCreated: {
 		type: Date,
@@ -22,6 +28,6 @@ const UserSchema = new mongoose.Schema({
 	}
 });
 
-const User = monggose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema);
 
 module.exports = User;
