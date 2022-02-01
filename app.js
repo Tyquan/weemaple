@@ -36,8 +36,4 @@ app.use("/api/V1/users", User);
 app.use('/api/V1/videos', Video);
 app.use('/api/V1/escraps', Escrap);
 
-app.listen('8080', () => {
-    console.log("PORT runnig on 8080");
-});
-
 module.exports = app;
