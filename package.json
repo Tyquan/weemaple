@@ -11,7 +11,7 @@
   },
   "scripts": {
     "startserver": "nodemon app.js",
-    "start": "node ./bim/www",
+    "start": "node ./bin/www",
     "test": "mocha test"
   },
   "devDependencies": {
