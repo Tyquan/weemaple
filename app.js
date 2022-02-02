@@ -1,39 +1,41 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 
-// Api Imports
-const Gig = require('./server/Controllers/Gig/Gig');
-const Article = require('./server/Controllers/Article/Article');
-const Employee = require('./server/Controllers/Employee/Employee');
-const User = require('./server/Controllers/User/User');
-const Video = require('./server/Controllers/Video/Video');
-const Escrap = require('./server/Controllers/Escrap/Escrap');
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
 
-// mongoose connection
-async function connectToDatabase () {
-    await mongoose.connect(process.env.PROD_DATABASE);
-}
+var app = express();
 
-connectToDatabase();
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
-const app = express();
-app.use(cors({
-    origin: '*'
-}));
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/weemaple', (req, res, next)=> {
-    res.json({
-        message: "Weemaple API V1"
-    });
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
 });
 
-app.use('/api/V1/gigs', Gig);
-app.use('/api/V1/articles', Article);
-app.use('/api/V1/employees', Employee);
-app.use("/api/V1/users", User);
-app.use('/api/V1/videos', Video);
-app.use('/api/V1/escraps', Escrap);
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 
 module.exports = app;
