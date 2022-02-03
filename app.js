@@ -15,7 +15,7 @@ const Video = require('./Controllers/Video/Video');
 var app = express();
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://tjreddick:Jamela17!@cluster0.d5e7g.mongodb.net/weemaple?retryWrites=true&w=majority');
+mongoose.connect(process.env.MONGODB_URI);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
