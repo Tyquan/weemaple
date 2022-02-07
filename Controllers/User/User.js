@@ -22,7 +22,7 @@ UserApi.get('/:id', async (req, res) => {
     
 });
 
-UserApi.post('/', (req, res) => {
+UserApi.post('/signup', (req, res) => {
     Authentication.signupUser(req, (data) => {
         res.status(200).json(data);
     });

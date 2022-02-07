@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const process = require('process');
 require('dotenv').config();
+const Middleware = require('./Config/Middleware');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -16,17 +17,10 @@ const Video = require('./Controllers/Video/Video');
 
 var app = express();
 
-const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI);
+Middleware.init(app);
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
