@@ -1,5 +1,47 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title} A software Development Company Producing Applications That will Help Users Navigate This World.
+  div(id="mainHero")
+    div(class="container")
+      div(class="row")
+        div(class="col-5")
+          h1(id="mainHeroTitle") Building Solutions For Small Businesses
+          h3(id="mainHeroContent") Welcome to #{title} A software Development Company Creating Applications That Help Small Businesses Build Their Future Efficiently.
+          br
+          div(id="mainHeroButton")
+            h5 Connect With Us
+        div(class="col-7")
+  br
+  div(id="devProjects")
+    div(class="container")
+      div(class="row")
+        div(class="col=12")
+          h2(id="titles") Projects Currently In Development
+      br
+      div(class="row")
+        div(class="col-4")
+          img(src="/images/businesses/eezy.png" class="img-fluid")
+          br
+          h4(class="text-center" id="webs") Eezypeezyprint.com
+        div(class="col-4")
+          img(src="/images/businesses/seleio.png" class="img-fluid")
+          br
+          h4(class="text-center" id="webs") Seleio.com
+        div(class="col-4")
+          img(src="/images/businesses/weegigs.png" class="img-fluid")
+          br
+          h4(class="text-center" id="webs") Weegigs.com
+  br
+  div(id="devProjects")
+    div(class="container")
+      div(class="row")
+        div(class="col=12")
+          h2(id="titles") Keep Up With Weemaple
+      br
+      div(class="row")
+        div(class="col-4")
+          img(src="/images/businesses/eezy.png" class="img-fluid")
+          br
+          h4(class="text-center" id="webs") Eezypeezyprint.com
+        div(class="col-4")
+        div(class="col-4")
