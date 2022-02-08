@@ -12,10 +12,9 @@ var logger = require('morgan');
 const Middleware = {
     init : (app) =>
     {
-        const dbName = "herrahiphop";
-        const dbUrl = `mongodb://localhost:27017/${dbName}`;
+        const dbUrl = 'mongodb://localhost:27017/weemaple';
 
-        mongoose.connect(process.env.MONGODB_URI);
+        mongoose.connect(process.env.MONGODB_URI || dbUrl);
         mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
         app.use(morgan('dev'));
