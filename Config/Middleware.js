@@ -5,9 +5,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const session = require('express-session');
 require('dotenv').config();
-//var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
 
 const Middleware = {
     init : (app) =>
