@@ -14,6 +14,7 @@ const Article = require('./Controllers/Article/Article');
 const Escrap = require('./Controllers/Escrap/Escrap');
 const Gig = require('./Controllers/Gig/Gig');
 const Video = require('./Controllers/Video/Video');
+const ContactMessage = require('./Controllers/ContactMessage/ContactMessage');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use('/api/v1/articles', Article);
 app.use('/api/v1/escraps', Escrap);
 app.use('/api/v1/gigs', Gig);
 app.use('/api/v1/videos', Video);
+app.use('/api/v1/contactMessages', ContactMessage);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

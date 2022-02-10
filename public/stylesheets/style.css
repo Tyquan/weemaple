@@ -7,49 +7,105 @@ a {
   color: #00B7FF;
 }
 
+@media only screen and (min-width: 300px) {
+  #navTitle {
+    font-size: 30px;
+  }
+  #mainHero {
+    background-image: url("/images/main.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #000000;
+    position: relative;
+    height: 600px;
+    color: white;
+    box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
+    
+  }
 
-#navTitle {
-  font-size: 30px;
+  #mainHeroTitle {
+    padding-top: 15%;
+    font-size: 35px;
+  }
+
+  #mainHeroContent {
+    padding-top: 20%;
+    font-family: Arial;
+  }
+
+  #mainHeroButton {
+    background-color: darkgreen;
+    width: 40%;
+    height: 55px;
+    padding-top: 5%;
+    padding-left: 7.5%;
+    border-radius: 5%;
+  }
+
+  #devProjects {
+    padding-top: 5%;
+  }
+
+  #contact {
+    padding-top: 10%;
+  }
+  
+  #titles {
+    padding-bottom: 2.5%;
+  }
+  
+  #webs {
+    padding-top: 15%;
+  }
 }
 
-#mainHero {
-  background-image: url("https://img.search.brave.com/9_Sd9UlK8r2togZhg6jyAG9LrXNC0Bf1MEgrnbQQ6H0/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93d3cu/b3B0aW11c2luZm8u/Y29tL3dwLWNvbnRl/bnQvdXBsb2Fkcy8y/MDE5LzA1LzE0OS5q/cGc");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: #000000;
-  position: relative;
-  height: 600px;
-  color: white;
+@media only screen and (min-width: 500px) {
+
+  #mainHeroButton {
+    padding-top: 3.5%;
+    padding-left: 5%;
+    margin-left: 30%;
+  }
 }
 
-#mainHeroTitle {
-  padding-top: 15%;
-  font-size: 50px;
+@media only screen and (min-width: 600px) {
 }
 
-#mainHeroContent {
-  padding-top: 20%;
-  font-family: Arial;
+@media only screen and (min-width: 900px) {
+  
+  #mainHeroTitle {
+    font-size: 50px;
+  }
+  
+  
+  #mainHeroContent {
+    padding-top: 20%;
+  }
+  
+  #mainHeroButton {
+    width: 40%;
+    padding-top: 2.8%;
+    padding-left: 5%;
+    border-radius: 5%;
+  }
+  
+  
 }
 
-#mainHeroButton {
-  background-color: darkgreen;
-  width: 40%;
-  height: 55px;
-  padding-top: 2.8%;
-  padding-left: 5%;
-  border-radius: 5%;
-}
-
-#devProjects {
-  padding-top: 5%;
-}
-
-#titles {
-  padding-bottom: 2.5%;
-}
-
-#webs {
-  padding-top: 15%;
+@media only screen and (min-width: 1200px) {
+  #mainHeroContent {
+    padding-top: 10%;
+  }
+  #mainHeroButton {
+    padding-top: 2.3%;
+    padding-left: 10%;
+  }
+  #mainHeroTitle {
+    padding-top: 10%;
+  }
+  #mainHeroButton {
+    padding-top: 2%;
+    padding-left: 11.5%;
+  }
 }
