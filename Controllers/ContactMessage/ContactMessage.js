@@ -6,7 +6,6 @@ const ContactMessageApi = express.Router();
 ContactMessageApi.get('/', (req, res) => {
     Database.GetData(ContactMessage, (contactMessages, error) => {
         if (error) res.status(500).json(error);
-        console.log("ContactMessages GET:", contactMessages)
         res.status(200).json(contactMessages);
     });
 });
@@ -37,14 +36,12 @@ ContactMessageApi.post('/website/', (req, res) => {
 
 ContactMessageApi.put('/:id', (req, res) => {
     Database.UpdateData(ContactMessage, req, req.body, (data) => {
-        console.log(data);
         res.json(data);
     })
 });
 
 ContactMessageApi.delete('/:id', (req, res) => {
     Database.DeleteData(ContactMessage, req, (data) => {
-        console.log(data);
         res.json(data);
     })
 });
