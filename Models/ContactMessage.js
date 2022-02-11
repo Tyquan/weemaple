@@ -1,9 +1,15 @@
 const mongoose = require('mongoose');
 
 const ContactMessageSchema = mongoose.Schema({
+    name: {
+        type: String
+    },
     email: {
         type: String,
         unique: true
+    },
+    application: {
+        type: String
     },
     reason: {
         type: String
