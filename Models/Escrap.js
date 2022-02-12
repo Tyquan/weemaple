@@ -27,6 +27,9 @@ const EscrapSchema = mongoose.Schema({
     availableTime: {
         type: String
     },
+    availableDate: {
+        type: Date
+    },
     creationDate: {
         type: Date
     },
