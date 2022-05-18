@@ -3,6 +3,21 @@ body {
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+#navbar {
+  background-color: #2980b9;
+  color: white;
+}
+
+#footer {
+  background-color: #2980b9;
+}
+
+#footerLogo {
+  color: white;
+  padding-top: 4%;
+  font-family: 'Exo 2', sans-serif;
+}
+
 a {
   color: #00B7FF;
 }
@@ -10,6 +25,8 @@ a {
 @media only screen and (min-width: 300px) {
   #navTitle {
     font-size: 30px;
+    color: white;
+    font-family: 'Exo 2', sans-serif;
   }
   #mainHero {
     background-image: url("/images/main.jpg");
@@ -47,8 +64,21 @@ a {
     padding-top: 5%;
   }
 
+  #aboutUs {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: #f39c12;
+    color: white;
+    
+  }
+
+  #aboutUsText {
+    font-size: 24px;
+  }
+
   #contact {
-    padding-top: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
   }
   
   #titles {
@@ -85,8 +115,8 @@ a {
   
   #mainHeroButton {
     width: 40%;
-    padding-top: 2.8%;
-    padding-left: 5%;
+    padding-top: 2.5%;
+    padding-left: 9%;
     border-radius: 5%;
   }
   

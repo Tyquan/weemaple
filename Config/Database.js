@@ -1,11 +1,24 @@
+const mongoose = require('mongoose');
+
 const Database = {
-    GetData : async (modelName, cb) =>
+    GetData : (modelName, res) =>
     {
+        // modelName.find().then((data) => {
+        //     console.log("Gigs GET:", data)
+        //     res.status(200).json(data);
+        // }).catch((err) => {
+        //     res.status(500).json(err);
+        // });
         // await modelName.find()
         //         .then(data => data)
         //         .catch(error => error);
-        let model = await modelName.find();
-        cb(model);
+        // modelName.find((results) => {
+        //     cb(results);
+        // })
+        // modelName.find().then((models) => {
+        //     cb(models);
+        // });
+        
     },
 
     getLatestData: async (modelName, limitNumber, cb) => {

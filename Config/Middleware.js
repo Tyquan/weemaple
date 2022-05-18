@@ -26,7 +26,6 @@ const Middleware = {
         
         app.use(cookieParser());
         
-        
         app.use(cors({
             origin: '*'
         }));

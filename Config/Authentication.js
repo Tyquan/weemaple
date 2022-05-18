@@ -18,9 +18,7 @@ const Authentication = {
 };
 
 function signUpEntity(req, Model, cb) {
-    console.log("REQUESTBODY:", req.body);
     let employee = new Model(req.body);
-    console.log("NEW MODEL:", employee);
     bcrypt.hash(employee.password, 10, (err, hash) => {
         if (err) cb({data: {}, message: "Not able to retreive User Model"});
         employee.password = hash;

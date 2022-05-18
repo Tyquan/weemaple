@@ -30,7 +30,19 @@ const UserSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    creationDate: Date,
+    gigs: [{
+        userId: {
+            type: String
+        },
+        reference: {
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: 'Gig'
+        }
+    }],
+    creationDate: {
+        type: Date,
+        default: Date.now()
+    },
     modifiedDate: Date
 });
 

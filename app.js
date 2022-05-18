@@ -1,22 +1,20 @@
 var createError = require('http-errors');
-var express = require('express');
+const express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-const process = require('process');
 require('dotenv').config();
 const Middleware = require('./Config/Middleware');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-const Article = require('./Controllers/Article/Article');
-const Escrap = require('./Controllers/Escrap/Escrap');
-const Gig = require('./Controllers/Gig/Gig');
-const Video = require('./Controllers/Video/Video');
-const ContactMessage = require('./Controllers/ContactMessage/ContactMessage');
+const Article = require('./API/Article/Article');
+const Escrap = require('./API/Escrap/Escrap');
+const Gig = require('./API/Gig/Gig');
+const Video = require('./API/Video/Video');
+const ContactMessage = require('./API/ContactMessage/ContactMessage');
+const User = require('./API/User/User');
 
-var app = express();
+const app = express();
 
 Middleware.init(app);
 
@@ -25,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users', User);
 app.use('/api/v1/articles', Article);
 app.use('/api/v1/escraps', Escrap);
 app.use('/api/v1/gigs', Gig);

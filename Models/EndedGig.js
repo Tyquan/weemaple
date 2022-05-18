@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
-const GigSchema = Schema({
+const EndedGigSchema = Schema({
     userId: {
         type: String
     },
@@ -18,9 +18,6 @@ const GigSchema = Schema({
     city: String,
     stateLink: String,
     zipcode: String,
-    travelType: String,
-    category: String,
-    keywords: String,
     contactNumber: String,
     contactEmail: String,
     creationDate: {
@@ -39,15 +36,12 @@ const GigSchema = Schema({
                 type: mongoose.Schema.Types.ObjectId, 
                 ref: 'User'
             },
-            creationDate: {
-                type: Date,
-                default: Date.now()
-            },
+            creationDate: Date,
             modifiedDate: Date
         }
     ]
 }, {strict: false});
 
-const Gig = mongoose.model("Gig", GigSchema);
+const EndedGig = mongoose.model("EndedGig", EndedGigSchema);
 
-module.exports = Gig;
+module.exports = EndedGig;

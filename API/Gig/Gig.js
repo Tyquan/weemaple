@@ -4,10 +4,11 @@ const Gig = require('../../Models/Gig');
 const GigApi = express.Router();
 
 GigApi.get('/', (req, res) => {
-    Database.GetData(Gig, (gigs, error) => {
-        if (error) res.status(500).json(error);
+    Gig.find().then((gigs) => {
         console.log("Gigs GET:", gigs)
         res.status(200).json(gigs);
+    }).catch((err) => {
+        res.status(500).json(err);
     });
 });
 
