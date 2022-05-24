@@ -30,6 +30,25 @@ a {
 }
 
 @media only screen and (min-width: 300px) {
+  #websiteLinks:link {
+    color: black;
+  }
+  
+  /* visited link */
+  #websiteLinks:visited {
+    color: black;
+  }
+  
+  /* mouse over link */
+  #websiteLinks:hover {
+    color:blue;
+  }
+  
+  /* selected link */
+  #websiteLinks:active {
+    color: blue;
+  }
+
   #navTitle {
     font-size: 30px;
     color: white;
