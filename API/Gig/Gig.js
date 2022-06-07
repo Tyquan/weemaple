@@ -5,8 +5,8 @@ const GigApi = express.Router();
 
 GigApi.get('/', (req, res) => {
     Gig.find().then((gigs) => {
-        console.log("Gigs GET:", gigs)
-        res.status(200).json(gigs);
+        res.status(200).json(gigs.sort((a,b) => { return b.creationDate - a.creationDate; })
+        );
     }).catch((err) => {
         res.status(500).json(err);
     });

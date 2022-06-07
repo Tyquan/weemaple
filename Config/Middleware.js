@@ -12,7 +12,7 @@ const Middleware = {
     {
         const dbUrl = 'mongodb://localhost:27017/weemaple';
 
-        mongoose.connect(process.env.MONGODB_URI);
+        mongoose.connect(dbUrl || process.env.MONGODB_URI);
         mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
         app.use(morgan('dev'));
