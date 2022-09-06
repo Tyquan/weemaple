@@ -13,6 +13,7 @@ const Gig = require('./API/Gig/Gig');
 const Video = require('./API/Video/Video');
 const ContactMessage = require('./API/ContactMessage/ContactMessage');
 const User = require('./API/User/User');
+const Employee = require('./API/Employee/Employee');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', User);
+app.use('/employees', Employee);
 app.use('/api/v1/articles', Article);
 app.use('/api/v1/escraps', Escrap);
 app.use('/api/v1/gigs', Gig);

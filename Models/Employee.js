@@ -30,7 +30,10 @@ const EmployeeSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    creationDate: Date,
+    creationDate: {
+        type: Date,
+        default: Date.now()
+    },
     modifiedDate: Date
 });
 

@@ -1,39 +1,14 @@
 extends layout
 
 block content
+  include partials/staticnav.jade
   div(id="mainHero")
     div(class="container")
       div(class="row")
         div(class="col-sm-12 col-lg-8")
           h1(id="mainHeroTitle" class="text-center") Building Solutions For Small Businesses
-          h3(id="mainHeroContent" class="text-center") Welcome to #{title} A software Development Company Creating Applications That Help Small Businesses Build Their Future Efficiently.
+          h3(id="mainHeroContent" class="text-center") Welcome to #{title}, a development company creating applications that help small businesses build their companies efficiently.
         div(class="col-sm-0 col-lg-4")
-  br
-  div(id="devProjects")
-    div(class="container")
-      div(class="row")
-        div(class="col-12")
-          h2(id="titles") Projects Currently In Development
-      br
-      div(class="row")
-        div(class="col-6")
-          img(src="/images/businesses/eezy.png" class="img-fluid")
-          br
-          h4(class="text-center" id="webs") 
-            a(id="websiteLinks" href="https://eezypeezyprint.com" target="_blank") Eezypeezyprint
-        div(class="col-6")
-          img(src="/images/businesses/weegigs.png" class="img-fluid")
-          br
-          h4(class="text-center" id="webs")
-            a(id="websiteLinks" href="https://weegigs.net" target="_blank") Weegigs
-      div(class="row")
-        div(class="col-6")
-          img(src="/images/businesses/selioter.png" class="img-fluid")
-          br
-          h4(class="text-center" id="webs")
-            a(id="websiteLinks" href="https://selioter.com" target="_blank") Selioter
-        div(class="col-6")
-  br
   div(id="aboutUs")
     div(class="container")
       div(class="row")
@@ -43,7 +18,7 @@ block content
       br
       div(class="row")
         div(class="col-12")
-          p(id="aboutUsText") Weemaple is a family owned business established in 2018. Our work is tailormade for you and everything you envision. Weemaple enriches the memories you share with your customers, coworkers, employees, or team; and the passion you put into your workplace. We believe that our custom services will be just what your looking for. We’re extremely passionate about every hour spent on accomplishing your vision, because what we love is being a part of bringing great ideas to life. Let’s create together!
+          p(id="aboutUsText") Weemaple is a family owned business established in 2018. We help to enrich the memories you share with your customers, coworkers, employees / team. Our services will be just what your looking for. We’re extremely passionate about every hour spent on accomplishing your vision, because what we love is being a part of bringing great ideas to life. Let’s create together!
   br
   div(id="contact")
     div(class="container")

@@ -14,6 +14,9 @@ body {
   background-color: #2980b9;
   color: white;
 }
+#navbar a {
+  color: white;
+}
 
 #footer {
   background-color: #2980b9;
@@ -21,7 +24,7 @@ body {
 
 #footerLogo {
   color: white;
-  padding-top: 4%;
+  padding-top: 1%;
   font-family: 'Exo 2', sans-serif;
 }
 

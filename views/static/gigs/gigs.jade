@@ -1,0 +1,20 @@
+extends ../../layout
+
+block content
+  include ../../partials/staticnav.jade
+  div(class="container")
+    h1 Gigs
+    br
+    each gig in gigs
+      a(href="/gig/" + gig.id)
+        h5
+          small= gig.creationDate
+          span  - 
+          = gig.title
+        p
+          span= gig.city
+          span  , 
+          = gig.stateLink
+          span  , 
+          = gig.zipcode
+        br
