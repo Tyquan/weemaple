@@ -8,6 +8,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Weemaple', message: "" });
 });
 
+router.get('/eezy', function(req, res, next) {
+  res.render('static/eezy');
+});
+
 /* Dynamic Pages */
 
 //Gigs

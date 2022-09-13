@@ -10,6 +10,10 @@ body {
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+#websiteLink {
+  color: #000000;
+}
+
 #navbar {
   background-color: #2980b9;
   color: white;
@@ -29,7 +33,7 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: black;
 }
 
 @media only screen and (min-width: 300px) {
@@ -59,6 +63,34 @@ a {
   }
   #mainHero {
     background-image: url("/images/main.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #000000;
+    position: relative;
+    height: 600px;
+    color: white;
+    -webkit-box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
+            box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
+    
+  }
+
+  #mainHeroB {
+    background-image: url("/images/weegigs/business.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #000000;
+    position: relative;
+    height: 600px;
+    color: white;
+    -webkit-box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
+            box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
+    
+  }
+
+  #mainHeroC {
+    background-image: url("/images/eezy/prints.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
