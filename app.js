@@ -1,36 +1,33 @@
-var createError = require('http-errors');
+const createError = require('http-errors');
 const express = require('express');
-var path = require('path');
+const path = require('path');
 require('dotenv').config();
 const Middleware = require('./Config/Middleware');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-const Article = require('./API/Article/Article');
-const Escrap = require('./API/Escrap/Escrap');
-const Gig = require('./API/Gig/Gig');
-const Video = require('./API/Video/Video');
-const ContactMessage = require('./API/ContactMessage/ContactMessage');
-const User = require('./API/User/User');
-const Employee = require('./API/Employee/Employee');
+// const verifyJWT = require('./middleware/verifyJWT');
 
 const app = express();
 
 Middleware.init(app);
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', User);
-app.use('/employees', Employee);
-app.use('/api/v1/articles', Article);
-app.use('/api/v1/escraps', Escrap);
-app.use('/api/v1/gigs', Gig);
-app.use('/api/v1/videos', Video);
-app.use('/api/v1/contactMessages', ContactMessage);
+app.use('/', require('./routes/index'));
+
+// Auth Apis
+app.use('/register', require('./API/auth/registerApi'));
+app.use('/login', require('./API/auth/loginApi'));
+app.use('/refresh', require('./API/auth/refreshApi'));
+app.use('/logout', require('./API/auth/logoutApi'))
+
+// Public Apis
+// app.use('/users', require('./API/User/User'));
+app.use('/api/v1/contactMessages', require('./API/contactMessageApi'));
+app.use('/api/v1/articles', require('./API/articleApi'));
+app.use('/api/v1/escraps', require('./API/escrapApi'));
+app.use('/api/v1/gigs', require('./API/gigApi'));
+app.use('/api/v1/videos', require('./API/videoApi'));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

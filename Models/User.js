@@ -16,8 +16,18 @@ const UserSchema = mongoose.Schema({
     },
     displayName: {
         type: String,
-        default: 'Users'
+        default: 'User'
     },
+    roles: {
+        User: {
+            type: Number,
+            default: 2001
+        },
+        Editor: Number,
+        Employee: Number,
+        Admin: Number
+    },
+    refreshToken: [String],
     loggedIn: {
         type: Boolean,
         default: 'false'

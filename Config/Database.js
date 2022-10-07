@@ -1,23 +1,14 @@
 const mongoose = require('mongoose');
 
 const Database = {
-    GetData : (modelName, res) =>
+    GetData : async (modelName, cb) =>
     {
-        // modelName.find().then((data) => {
-        //     console.log("Gigs GET:", data)
-        //     res.status(200).json(data);
-        // }).catch((err) => {
-        //     res.status(500).json(err);
-        // });
-        // await modelName.find()
-        //         .then(data => data)
-        //         .catch(error => error);
-        // modelName.find((results) => {
-        //     cb(results);
-        // })
-        // modelName.find().then((models) => {
-        //     cb(models);
-        // });
+        await modelName.find()
+            .then((data) => {
+                cb(data)
+            }).catch((err) => {
+                cb(err);
+            });
         
     },
 
@@ -40,9 +31,9 @@ const Database = {
             .catch(error => cb(error));
     },
 
-    UpdateData : async (modelName, req, updatedDataBody, cb) => 
+    UpdateData : async (modelName, req, cb) => 
     {
-        modelName.findByIdAndUpdate(req.params.id, updatedDataBody, (data) => {
+        modelName.findByIdAndUpdate(req.params.id, req.body, (data) => {
             cb(data);
         });
     },

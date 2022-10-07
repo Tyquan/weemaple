@@ -5,7 +5,7 @@ const favicon = require('serve-favicon');
 const cors = require('cors');
 const session = require('express-session');
 require('dotenv').config();
-var cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 
 const Middleware = {
     init : (app) =>
@@ -21,14 +21,24 @@ const Middleware = {
         // view engine setup
         app.set('views', path.join(__dirname, '../views'));
         app.set('view engine', 'jade');
-
-        // app.use(logger('dev'));
         
+        // cookies
         app.use(cookieParser());
         
-        app.use(cors({
-            origin: '*'
-        }));
+        const whiteList = ["https://www.weegigs.net", "https:www.eezypeezyprint.com", "http://127.0.0.1:5000", "http://localhost:3000"];
+
+        const corsOptions = {
+            origin: (origin, callback) => {
+                if (whiteList.indexOf(origin) !== -1 || !origin) {
+                    callback(null, true)
+                } else {
+                    callback(new Error('Not allowed by CORS'));
+                }
+            },
+            optionsSuccessStatus: 200
+        }
+
+        app.use(cors(corsOptions));
         app.use(session({
             secret: "Herrasecretness",
             resave: false,
