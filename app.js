@@ -3,13 +3,10 @@ const express = require('express');
 const path = require('path');
 require('dotenv').config();
 const Middleware = require('./Config/Middleware');
-// const verifyJWT = require('./middleware/verifyJWT');
 
 const app = express();
 
 Middleware.init(app);
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/index'));
@@ -21,7 +18,7 @@ app.use('/refresh', require('./API/auth/refreshApi'));
 app.use('/logout', require('./API/auth/logoutApi'))
 
 // Public Apis
-// app.use('/users', require('./API/User/User'));
+app.use('/api/v1/users', require('./API/userApi'));
 app.use('/api/v1/contactMessages', require('./API/contactMessageApi'));
 app.use('/api/v1/articles', require('./API/articleApi'));
 app.use('/api/v1/escraps', require('./API/escrapApi'));

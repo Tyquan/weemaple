@@ -7,6 +7,7 @@ const GigSchema = Schema({
         type: String
     },
     title: String,
+    companyName: String,
     compensation: Number,
     payPeriod: String,
     description: String,
