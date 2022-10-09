@@ -27,20 +27,21 @@ const Middleware = {
         // cookies
         app.use(cookieParser());
         
-        const whiteList = ["https://www.weegigs.net", "https:www.eezypeezyprint.com", "http://127.0.0.1:5000", "http://localhost:3000"];
+        // const whiteList = ["https://www.weegigs.net", "https:www.eezypeezyprint.com", "http://127.0.0.1:5000", "http://localhost:3000"];
 
-        const corsOptions = {
-            origin: (origin, callback) => {
-                if (whiteList.indexOf(origin) !== -1 || !origin) {
-                    callback(null, true)
-                } else {
-                    callback(new Error('Not allowed by CORS'));
-                }
-            },
-            optionsSuccessStatus: 200
-        }
+        // const corsOptions = {
+        //     origin: (origin, callback) => {
+        //         if (whiteList.indexOf(origin) !== -1 || !origin) {
+        //             callback(null, true)
+        //         } else {
+        //             callback(new Error('Not allowed by CORS'));
+        //         }
+        //     },
+        //     optionsSuccessStatus: 200
+        // }
 
-        app.use(cors(corsOptions));
+        // app.use(cors(corsOptions));
+        app.use(cors())
         app.use(session({
             secret: "Herrasecretness",
             resave: false,

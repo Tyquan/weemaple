@@ -3,7 +3,12 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const User = require('../../models/User');
 
-const handleLogin = async (req, res) => {
+const createJWT = () => {
+    
+};
+
+
+module.exports.handleLogin = async (req, res) => {
     const cookies = req.cookies;
 
     const user = req.body;
@@ -67,4 +72,4 @@ const handleLogin = async (req, res) => {
     }
 }
 
-module.exports = { handleLogin };
+// module.exports = { handleLogin };
