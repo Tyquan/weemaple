@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const morgan = require('morgan');
 const favicon = require('serve-favicon');
 const cors = require('cors');
-const session = require('express-session');
+const session = require('cookie-session');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
 
