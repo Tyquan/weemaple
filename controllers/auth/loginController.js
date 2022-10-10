@@ -3,11 +3,6 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const User = require('../../models/User');
 
-const createJWT = () => {
-    
-};
-
-
 module.exports.handleLogin = async (req, res) => {
     const cookies = req.cookies;
 
@@ -30,7 +25,7 @@ module.exports.handleLogin = async (req, res) => {
             },
             process.env.ACCESS_TOKEN_SECRET,
             { expiresIn: '1h' }
-        );
+        ); 
         const newRefreshToken = jwt.sign(
             { "email": foundUser.email },
             process.env.REFRESH_TOKEN_SECRET,
@@ -71,5 +66,3 @@ module.exports.handleLogin = async (req, res) => {
         res.sendStatus(401);
     }
 }
-
-// module.exports = { handleLogin };

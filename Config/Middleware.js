@@ -41,7 +41,6 @@ const Middleware = {
         // }
 
         // app.use(cors(corsOptions));
-        app.use(cors())
         app.use(session({
             secret: "Herrasecretness",
             resave: false,
