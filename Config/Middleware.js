@@ -26,7 +26,20 @@ const Middleware = {
         
         // cookies
         app.use(cookieParser());
-        
+        // cors
+        const corsOptions = {
+            origin: '*',
+            optionsSuccessStatus: 200
+        }
+        app.use(cors(corsOptions));
+        //  session
+        app.use(session({
+            secret: "Herrasecretness",
+            resave: false,
+            saveUninitialized: true,
+            cookie: {secure: true}
+        }));
+
         // const whiteList = ["https://www.weegigs.net", "https:www.eezypeezyprint.com", "http://127.0.0.1:5000", "http://localhost:3000"];
 
         // const corsOptions = {
@@ -41,12 +54,8 @@ const Middleware = {
         // }
 
         // app.use(cors(corsOptions));
-        app.use(session({
-            secret: "Herrasecretness",
-            resave: false,
-            saveUninitialized: true,
-            cookie: {secure: true}
-        }));
+        // app.use(cors())
+
     }
 };
 
