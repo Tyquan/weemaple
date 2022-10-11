@@ -40,10 +40,12 @@ const Middleware = {
 
         //  session
         app.use(session({
-            secret: "Herrasecretness",
-            resave: false,
-            saveUninitialized: true,
-            cookie: {secure: true}
+            name: "session",
+            keys: [process.env.SESSION_KEY],
+            maxAge: 24 * 60 * 60 * 1000 // 24 hours
+            // resave: false,
+            // saveUninitialized: true,
+            // cookie: {secure: true}
         }));
 
     }
