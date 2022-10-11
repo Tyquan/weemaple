@@ -1,5 +1,5 @@
 const databaseApi = require('./databaseApi/databaseApi');
-const ContactMessage = require('../models/ContactMessage');
+const ContactMessage = require('../Models/ContactMessage');
 
 const getContactMessage = (req, res) => {
     databaseApi.GetData(ContactMessage, (contactMessages, error) => {
