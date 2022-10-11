@@ -1,11 +1,11 @@
 const express = require('express');
 const contactMessageApi = express.Router();
 // const contactMessage = require('../controllers/contactMessageController');
-const ROLES_LIST = require('../config/ROLES_LIST.js');
+const ROLES_LIST = require('../Config/ROLES_LIST.js');
 const verifyRoles = require('../middleware/verifyRoles');
 
 const databaseApi = require('../controllers/databaseApi/databaseApi');
-const ContactMessage = require('../models/ContactMessage');
+const ContactMessage = require('../Models/ContactMessage');
 
 const getContactMessage = (req, res) => {
     databaseApi.GetData(ContactMessage, (contactMessages, error) => {
