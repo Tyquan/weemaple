@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Database = {
+module.exports = {
     GetData : async (modelName, cb) =>
     {
         await modelName.find()
@@ -9,7 +9,6 @@ const Database = {
             }).catch((err) => {
                 cb(err);
             });
-        
     },
 
     getLatestData: async (modelName, limitNumber, cb) => {
@@ -45,5 +44,3 @@ const Database = {
         });
     }
 };
-
-module.exports = Database;

@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const mongoose = require("mongoose");
 const morgan = require('morgan');
-const favicon = require('serve-favicon');
+
 const cors = require('cors');
 const session = require('cookie-session');
 require('dotenv').config();
@@ -18,21 +18,26 @@ const Middleware = {
         app.use(express.json());
         app.use(express.urlencoded({ extended: false }));
         app.use(morgan('dev'));
-        app.use(favicon(path.join(__dirname, '../public/images/fav', 'favicon.ico')));
-        
-        // view engine setup
-        app.set('views', path.join(__dirname, '../views'));
-        app.set('view engine', 'jade');
         
         // cookies
         app.use(cookieParser());
+
         // cors
+        const whiteList = process.env.WHITE_LIST;
+
         const corsOptions = {
-            origin: '*',
-            credentials: true,
+            origin: (origin, callback) => {
+                if (whiteList.indexOf(origin) !== -1 || !origin) {
+                    callback(null, true)
+                } else {
+                    callback(new Error('Not allowed by CORS'));
+                }
+            },
             optionsSuccessStatus: 200
         }
+
         app.use(cors(corsOptions));
+
         //  session
         app.use(session({
             secret: "Herrasecretness",
@@ -40,22 +45,6 @@ const Middleware = {
             saveUninitialized: true,
             cookie: {secure: true}
         }));
-
-        // const whiteList = ["https://www.weegigs.net", "https:www.eezypeezyprint.com", "http://127.0.0.1:5000", "http://localhost:3000"];
-
-        // const corsOptions = {
-        //     origin: (origin, callback) => {
-        //         if (whiteList.indexOf(origin) !== -1 || !origin) {
-        //             callback(null, true)
-        //         } else {
-        //             callback(new Error('Not allowed by CORS'));
-        //         }
-        //     },
-        //     optionsSuccessStatus: 200
-        // }
-
-        // app.use(cors(corsOptions));
-        // app.use(cors())
 
     }
 };

@@ -1,29 +1,46 @@
 const createError = require('http-errors');
+const favicon = require('serve-favicon');
 const express = require('express');
 const path = require('path');
 require('dotenv').config();
 const Middleware = require('./Config/Middleware');
+const index = require('./routes/index');
+const register = require('./API/auth/registerApi');
+const login = require('./API/auth/loginApi');
+const refresh = require('./API/auth/refreshApi');
+const logout = require('./API/auth/logoutApi');
+const users = require('./API/userApi');
+const messages = require('./API/contactMessageApi');
+const articles = require('./API/articleApi');
+const escraps = require('./API/escrapApi');
+const gigs = require('./API/gigApi');
+const videos = require('./API/videoApi');
 
 const app = express();
 
 Middleware.init(app);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(favicon(path.join(__dirname, 'public/images/fav', 'favicon.ico')));
+app.use(express.static(path.join(__dirname, 'public')));     
+// view engine setupnpm 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
-app.use('/', require('./routes/index'));
+
+app.use('/', index);
 
 // Auth Apis
-app.use('/register', require('./API/auth/registerApi'));
-app.use('/login', require('./API/auth/loginApi'));
-app.use('/refresh', require('./API/auth/refreshApi'));
-app.use('/logout', require('./API/auth/logoutApi'))
+app.use('/register', register);
+app.use('/login', login);
+app.use('/refresh', refresh);
+app.use('/logout', logout)
 
 // Public Apis
-app.use('/api/v1/users', require('./API/userApi'));
-app.use('/api/v1/contactMessages', require('./API/contactMessageApi'));
-app.use('/api/v1/articles', require('./API/articleApi'));
-app.use('/api/v1/escraps', require('./API/escrapApi'));
-app.use('/api/v1/gigs', require('./API/gigApi'));
-app.use('/api/v1/videos', require('./API/videoApi'));
+app.use('/api/v1/users', users);
+app.use('/api/v1/contactMessages', messages);
+app.use('/api/v1/articles', articles);
+app.use('/api/v1/escraps', escraps);
+app.use('/api/v1/gigs', gigs);
+app.use('/api/v1/videos', videos);
 
 
 // catch 404 and forward to error handler

@@ -1,36 +1,36 @@
-const Database = require('../config/Database');
+const databaseApi = require('./databaseApiApi/databaseApiApi');
 const Video = require('../models/Video');
 
 const getVideos = (req, res) => {
-    Database.GetData(Video, (err, videos) => {
+    databaseApi.GetData(Video, (err, videos) => {
         if (err) res.status(500).json(err);
         res.status(200).json(videos);
     });
 };
 
 const getSingleVideo = (req, res) => {
-    Database.GetSingleData(Video, req.params.id, (err, video) => {
+    databaseApi.GetSingleData(Video, req.params.id, (err, video) => {
         if (err) res.status(500).json(err);
         res.status(200).json(video);
     })
 };
 
 const createNewVideo = (req, res) => {
-    Database.PostData(Video, req, (err, video) => {
+    databaseApi.PostData(Video, req, (err, video) => {
         if (err) res.status(500).json(err);
         res.status(200).json(video);
     })
 };
 
 const updateVideo = (req, res) => {
-    Database.UpdateData(Video, req, (err, video) => {
+    databaseApi.UpdateData(Video, req, (err, video) => {
         if (err) res.status(500).json(err);
         res.status(200).json(video);
     })
 };
 
 const deleteVideo = (req, res) => {
-    Database.DeleteData(Video, req, (err, video) => {
+    databaseApi.DeleteData(Video, req, (err, video) => {
         if (err) res.status(500).json(err);
         res.status(200).json(video)
     })
