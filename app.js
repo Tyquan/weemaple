@@ -9,18 +9,19 @@ const index = require('./routes/index');
 // const login = require('./API/auth/loginApi');
 // const refresh = require('./API/auth/refreshApi');
 // const logout = require('./API/auth/logoutApi');
-// const users = require('./API/userApi');
-// const messages = require('./API/contactMessageApi');
-// const articles = require('./API/articleApi');
-// const escraps = require('./API/escrapApi');
-// const gigs = require('./API/gigApi');
-// const videos = require('./API/videoApi');
+const users = require('./API/userApi');
+const messages = require('./API/contactMessageApi');
+const articles = require('./API/articleApi');
+const escraps = require('./API/escrapApi');
+const gigs = require('./API/gigApi');
+const videos = require('./API/videoApi');
 
 const app = express();
 
 Middleware.init(app);
 app.use(favicon(path.join(__dirname, 'public/images/fav', 'favicon.ico')));
-app.use(express.static(path.join(__dirname, 'public')));     
+app.use(express.static(path.join(__dirname, 'public')));  
+
 // view engine setupnpm 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -35,12 +36,12 @@ app.use('/', index);
 // app.use('/logout', logout);
 
 // Public Apis
-// app.use('/api/v1/users', users);
-// app.use('/api/v1/contactMessages', messages);
-// app.use('/api/v1/articles', articles);
-// app.use('/api/v1/escraps', escraps);
-// app.use('/api/v1/gigs', gigs);
-// app.use('/api/v1/videos', videos);
+app.use('/api/v1/users', users);
+app.use('/api/v1/contactMessages', messages);
+app.use('/api/v1/articles', articles);
+app.use('/api/v1/escraps', escraps);
+app.use('/api/v1/gigs', gigs);
+app.use('/api/v1/videos', videos);
 
 
 // catch 404 and forward to error handler
