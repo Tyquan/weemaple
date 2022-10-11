@@ -1,4 +1,4 @@
-const databaseApi = require('./databaseApiApi/databaseApiApi');
+const databaseApi = require('./databaseApi/databaseApi');
 const Escrap = require('../models/Escrap');
 
 const getEscraps = (req, res) => {

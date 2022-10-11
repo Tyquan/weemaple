@@ -1,4 +1,4 @@
-const databaseApi = require('./databaseApiApi/databaseApiApi');
+const databaseApi = require('./databaseApi/databaseApi');
 const User = require('../models/User');
 
 const getUsers = (req, res) => {

@@ -1,4 +1,4 @@
-const databaseApi = require('./databaseApiApi/databaseApiApi');
+const databaseApi = require('./databaseApi/databaseApi');
 const ContactMessage = require('../models/ContactMessage');
 
 const getContactMessage = (req, res) => {

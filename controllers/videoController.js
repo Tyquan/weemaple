@@ -1,4 +1,4 @@
-const databaseApi = require('./databaseApiApi/databaseApiApi');
+const databaseApi = require('./databaseApi/databaseApi');
 const Video = require('../models/Video');
 
 const getVideos = (req, res) => {
