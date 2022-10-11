@@ -1,7 +1,7 @@
 const express = require('express');
 const contactMessageApi = express.Router();
 // const contactMessage = require('../controllers/contactMessageController');
-const ROLES_LIST = require('../Config/ROLES_LIST.js');
+const ROLES_LIST = require('../Config/roles_list.js');
 const verifyRoles = require('../middleware/verifyRoles');
 
 const databaseApi = require('../controllers/databaseApi/databaseApi');
