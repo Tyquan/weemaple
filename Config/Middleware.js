@@ -38,7 +38,7 @@ const Middleware = {
 
         app.use(cors(corsOptions));
 
-        //  session
+        // session
         app.use(session({
             name: "session",
             keys: [process.env.SESSION_KEY],
