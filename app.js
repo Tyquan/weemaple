@@ -32,7 +32,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use('/', index);
 
 // Auth Apis
-// app.use('/register', register);
+app.use('/register', register);
 // app.use('/login', login);
 // app.use('/refresh', refresh);
 // app.use('/logout', logout);

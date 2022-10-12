@@ -1,5 +1,5 @@
 const databaseApi = require('./databaseApi/databaseApi');
-const Escrap = require('../models/Escrap');
+const Escrap = require('../Models/Escrap');
 
 const getEscraps = (req, res) => {
     databaseApi.GetData(Escrap, (err, scraps) => {

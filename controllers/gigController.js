@@ -1,5 +1,5 @@
 const databaseApi = require('./databaseApi/databaseApi');
-const Gig = require('../models/Gig');
+const Gig = require('../Models/Gig');
 
 const getGigs = (req, res) => {
     databaseApi.GetData(Gig, (gigs, error) => {

@@ -1,5 +1,5 @@
 const databaseApi = require('./databaseApi/databaseApi');
-const Video = require('../models/Video');
+const Video = require('../Models/Video');
 
 const getVideos = (req, res) => {
     databaseApi.GetData(Video, (err, videos) => {
