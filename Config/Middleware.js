@@ -7,7 +7,7 @@ require('dotenv').config();
 const cookieParser = require('cookie-parser');
 
 // Optional (cross origin) cors settings
-const allowedOrigins = ["https://www.weegigs.net", "https:www.eezypeezyprint.com", "http://127.0.0.1:5000", "http://localhost:3000"];
+const allowedOrigins = ["https://www.weegigs.net", "https://weegigs.net", "https:www.eezypeezyprint.com", "http://127.0.0.1:5000", "http://localhost:3000"];
 const setCorsOptions = () => {
     return {
         origin: (origin, callback) => {
