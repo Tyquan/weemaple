@@ -23,16 +23,10 @@ const Middleware = {
         app.use(cookieParser());
 
         // cors
-        const whiteList = ["https://www.weegigs.net", "https:www.eezypeezyprint.com", "http://127.0.0.1:5000", "http://localhost:3000"];
+        // const whiteList = ["https://www.weegigs.net", "https:www.eezypeezyprint.com", "http://127.0.0.1:5000", "http://localhost:3000"];
 
         const corsOptions = {
-            origin: (origin, callback) => {
-                if (whiteList.indexOf(origin) !== -1 || !origin) {
-                    callback(null, true)
-                } else {
-                    callback(new Error('Not allowed by CORS'));
-                }
-            },
+            origin: '*',
             optionsSuccessStatus: 200
         }
 
