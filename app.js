@@ -5,16 +5,16 @@ const path = require('path');
 require('dotenv').config();
 const Middleware = require('./Config/Middleware');
 const index = require('./routes/index');
-// const register = require('./API/auth/registerApi');
-// const login = require('./API/auth/loginApi');
-// const refresh = require('./API/auth/refreshApi');
-// const logout = require('./API/auth/logoutApi');
-// const users = require('./API/userApi');
+const register = require('./API/auth/registerApi');
+const login = require('./API/auth/loginApi');
+const refresh = require('./API/auth/refreshApi');
+const logout = require('./API/auth/logoutApi');
+const users = require('./API/userApi');
 const messages = require('./API/contactMessageApi');
-// const articles = require('./API/articleApi');
-// const escraps = require('./API/escrapApi');
-// const gigs = require('./API/gigApi');
-// const videos = require('./API/videoApi');
+const articles = require('./API/articleApi');
+const escraps = require('./API/escrapApi');
+const gigs = require('./API/gigApi');
+const videos = require('./API/videoApi');
 
 const app = express();
 
@@ -33,17 +33,17 @@ app.use('/', index);
 
 // Auth Apis
 app.use('/register', register);
-// app.use('/login', login);
-// app.use('/refresh', refresh);
-// app.use('/logout', logout);
+app.use('/login', login);
+app.use('/refresh', refresh);
+app.use('/logout', logout);
 
 // Public Apis
-// app.use('/api/v1/users', users);
+app.use('/api/v1/users', users);
 app.use('/api/v1/contactMessages', messages);
-// app.use('/api/v1/articles', articles);
-// app.use('/api/v1/escraps', escraps);
-// app.use('/api/v1/gigs', gigs);
-// app.use('/api/v1/videos', videos);
+app.use('/api/v1/articles', articles);
+app.use('/api/v1/escraps', escraps);
+app.use('/api/v1/gigs', gigs);
+app.use('/api/v1/videos', videos);
 
 
 // catch 404 and forward to error handler
