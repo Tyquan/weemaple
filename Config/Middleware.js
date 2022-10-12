@@ -23,7 +23,7 @@ const Middleware = {
         app.use(cookieParser());
 
         // cors
-        const whiteList = process.env.WHITE_LIST;
+        const whiteList = ["https://www.weegigs.net", "https:www.eezypeezyprint.com", "http://127.0.0.1:5000", "http://localhost:3000"];
 
         const corsOptions = {
             origin: (origin, callback) => {
