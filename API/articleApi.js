@@ -1,7 +1,7 @@
 const express = require('express');
 const articleApi = express.Router();
 const articleController = require('../controllers/articleController');
-const ROLES_LIST = require('../config/roles_list');
+const ROLES_LIST = require('../Config/roles_list');
 const verifyRoles = require('../middleware/verifyRoles');
 
 articleApi.route('/')

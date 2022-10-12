@@ -1,6 +1,6 @@
 const express = require('express');
 const UserApi = express.Router();
-const ROLES_LIST = require('../config/roles_list');
+const ROLES_LIST = require('../Config/roles_list');
 const verifyRoles = require('../middleware/verifyRoles');
 const userController = require('../controllers/userController');
 
