@@ -32,14 +32,14 @@ module.exports = {
 
     UpdateData : async (modelName, req, cb) => 
     {
-        modelName.findByIdAndUpdate(req.params.id, req.body, (data) => {
+        await modelName.findByIdAndUpdate(req.params.id, req.body, (data) => {
             cb(data);
         });
     },
 
     DeleteData : async (modelName, req, cb) =>
     {
-        modelName.findByIdAndDelete(req.params.id, () => {
+        await modelName.findByIdAndDelete(req.params.id, () => {
             cb("Deleted");
         });
     }

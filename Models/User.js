@@ -41,12 +41,39 @@ const UserSchema = mongoose.Schema({
         default: 0
     },
     gigs: [{
-        userId: {
+        gigId: {
             type: String
         },
         reference: {
             type: mongoose.Schema.Types.ObjectId, 
             ref: 'Gig'
+        }
+    }],
+    articles: [{
+        articleId: {
+            type: String
+        },
+        reference: {
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: 'Article'
+        }
+    }],
+    escraps: [{
+        escrapId: {
+            type: String
+        },
+        reference: {
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: 'Escrap'
+        }
+    }],
+    videos: [{
+        videoId: {
+            type: String
+        },
+        reference: {
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: 'Video'
         }
     }],
     creationDate: {
