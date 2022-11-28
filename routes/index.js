@@ -101,8 +101,6 @@ router.post('/signup', async (req, res, next) => {
   if (duplicate) {
       res.render('static/auth/signup', { 'message': 'Email already in use. Please login.' });
   }
-
-  console.log("New User", req.body);
   try {
       //encrypt the password
       const hashedPwd = await bcrypt.hash(password, 10);
@@ -118,7 +116,7 @@ router.post('/signup', async (req, res, next) => {
 
       res.redirect('../users/gigs', );
   } catch (err) {
-      res.status(500).json({ 'message': err.message });
+    res.render('static/auth/signup', { 'message': 'Unable to signup please try again' });
   }
 });
 
@@ -136,18 +134,22 @@ router.get('/login', (req, res, next) => {
 });
 
 router.post('/login', async(req, res, next) => {
-  const { email, password } = req.body;
-  const foundUser = await User.findOne({ email: email }).exec();
-  bcrypt.compare(password, foundUser.password, (err, result) => {
+  const foundUser = await User.findOne({ email: req.body.email }).exec();
+  if (!foundUser) {
+    res.render('static/auth/login', {message: 'Invalid username or password'});
+  } else {
+    bcrypt.compare(req.body.password, foundUser.password, (err, result) => {
       if (err) throw err;
       if (result) {
-          session = req.session;
-          session.userId = foundUser._id;
-          res.redirect('usergigs');
+        session = req.session;
+        session.userId = foundUser._id;
+        res.redirect('usergigs');
       } else {
-          res.send('Invalid username or password');
+        res.render('static/auth/login', {message: 'Unable to sign up. Please try again...'});
       }
-  });
+    });
+  }
+  
 });
 
 

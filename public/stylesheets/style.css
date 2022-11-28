@@ -41,6 +41,10 @@ a {
     font-size: 14px;
   }
 
+  #error {
+    color: red;
+  }
+
   #hero {
     justify-content: center;
   }
@@ -175,10 +179,16 @@ a {
 }
 
 @media only screen and (min-width: 600px) {
+  #container {
+    margin-top: 12%;
+  }
 }
 
 @media only screen and (min-width: 900px) {
-  
+  #container {
+    margin-top: 10%;
+  }
+
   #mainHeroTitle {
     font-size: 50px;
   }
