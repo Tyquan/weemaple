@@ -1,0 +1,58 @@
+extends ../layout
+
+block content
+  include ../partials/userNav.jade
+  div(class="container" id="container")
+    form(action=action="/createGig" method="POST" class="form")
+      label(for="title") Title
+      input(class="form-control" type="text" name="title" required)
+      br
+      label(for="companyName") Company Name
+      input(class="form-control" type="text" name="companyName")
+      br
+      label(for="compensation") Compensation
+      input(class="form-control" type="number" name="compensation")
+      br
+      label(for="payPeriod") Pay Period
+      input(class="form-control" type="string" name="payPeriod")
+      br
+      label(for="websiteLink") Website
+      input(class="form-control" type="string" name="websiteLink")
+      br
+      label(for="facebookLink") Facebook Url
+      input(class="form-control" type="string" name="facebookLink")
+      br
+      label(for="twitterLink") Twitter Url
+      input(class="form-control" type="string" name="twitterLink")
+      br
+      label(for="instagramLink") Instagram Url
+      input(class="form-control" type="string" name="instagramLink")
+      br
+      label(for="address") Address
+      input(class="form-control" type="string" name="address")
+      br
+      label(for="city") City
+      input(class="form-control" type="string" name="city")
+      br
+      label(for="stateLink") State
+      input(class="form-control" type="string" name="stateLink")
+      br
+      label(for="zipcode") Zip Code
+      input(class="form-control" type="string" name="zipcode")
+      br
+      label(for="travelType") Travel Type
+      input(class="form-control" type="string" name="travelType" placeholder="Remote? In Person?")
+      br
+      label(for="category") Job Category
+      input(class="form-control" type="string" name="category")
+      br
+      label(for="contactNumber") Phone Number
+      input(class="form-control" type="string" name="contactNumber")
+      br
+      label(for="contactEmail") Email
+      input(class="form-control" type="string" name="contactEmail")
+      br
+      label(for="description") Description
+      textarea(class="form-control" name="description")
+      br
+      input(type="submit" class="btn btn-success" value="Create")

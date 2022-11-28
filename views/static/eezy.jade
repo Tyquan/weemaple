@@ -2,6 +2,41 @@ extends ../layout
 
 block content
   include ../partials/staticnav.jade
+  div(id="mainHero")
+    div(class="container")
+      div(class="row")
+        div(class="col-sm-12 col-lg-8")
+          div(id="hero")
+            h2(id="mainHeroTitle" class="text-center") Building Solutions For Small Businesses
+            h3(id="mainHeroContent" class="text-center") Welcome to #{title}, a development company creating applications that help small businesses build their companies efficiently.
+        div(class="col-sm-0 col-lg-4")
+  div(id="aboutUs")
+    div(class="container")
+      div(class="row")
+        div(class="col-12")
+          h2(id="titles")
+            b A Little Bit About Us...
+      br
+      div(class="row")
+        div(class="col-12")
+          p(id="aboutUsText") Weemaple is a family owned business established in 2018. We help to enrich the memories you share with your customers, coworkers, employees / team. Our services will be just what your looking for. We’re extremely passionate about every hour spent on accomplishing your vision, because what we love is being a part of bringing great ideas to life. Let’s create together!
+  div(id="mainHeroB")
+    div(class="container")
+      div(class="row")
+        div(class="col-sm-12 col-lg-8")
+          h1(id="mainHeroTitle" class="text-center") Weemaple.com
+          h3(id="mainHeroContent" class="text-center") A web application that helps employers find, recruit and secure the right talent fast...
+        div(class="col-sm-0 col-lg-4")
+  div(id="aboutUs")
+    div(class="container")
+      div(class="row")
+        div(class="col-12")
+          h2(id="titles")
+            b A Little Bit About Weemaple.com...
+      br
+      div(class="row")
+        div(class="col-12")
+          p(id="aboutUsText") The Weemaple application specializes in bringing available remote (stay at home) jobs to the door step of our users. Our recruiting seperates strong candidates from ones that will not be a good fit in the organization we are a working with. In the future, We will bring education services to potential applicants so they can stay on top and ahead of the indutry they are looking to have a career in.
   div(id="mainHeroC")
     div(class="container")
       div(class="row")
@@ -26,11 +61,12 @@ block content
     div(class="container")
       div(class="row")
         div(class="col-12")
-          h2(id="titles") Contact us With any questions about eezypeezyprint.com
+          h2(id="titles") Contact us With any questions or inquiries
       br
       div(class="row")
         div(class="col-12")
-          form(action="/api/v1/contactMessages/website/", method="post")
+          p=message
+          form(action="/contact", method="post")
             h3(class="text-center")= message
             label(for="email") Email
             input(type="email", name="email" class="form-control" required)

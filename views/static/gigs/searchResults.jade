@@ -1,7 +1,7 @@
-extends layout
+extends ../../layout
 
 block content
-  include partials/staticnav.jade
+  include ../../partials/staticnav.jade
   div(class="container" id="container")
     form(class="form" id="filterForm" method="POST" action="/search")
       div(class="row")
@@ -15,8 +15,6 @@ block content
       each gig in gigs
         h2= gig.title
         h3
-          span= gig.creationDate.toDateString()
-          span  - 
           span= gig.city
           span , 
           span= gig.stateLink

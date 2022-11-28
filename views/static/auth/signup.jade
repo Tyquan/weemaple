@@ -1,0 +1,23 @@
+extends ../../layout
+
+block content
+  include ../../partials/staticnav.jade
+  div(class="container" id="container")
+    div(id="signupForm")
+      div(class="row")
+        div(class="col-12")
+          h2 Signup
+          p= message
+          form(class="form" method="POST" action="/signup")
+            label(for="email") Email:
+            input(id="email" class="form-control" type="email" name="email" required)
+            br
+            label(for="password") Password:
+            input(id="password" class="form-control" type="password" name="password" required)
+            br
+            input(type="submit" id="submitButton" class="btn btn-success")
+      br
+      div(class="row")
+        div(class="col-12")
+          p Already A Member? 
+            a(href="/login") Login Here

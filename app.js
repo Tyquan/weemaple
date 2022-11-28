@@ -6,11 +6,14 @@ require('dotenv').config();
 
 const Middleware = require('./Config/Middleware');
 const index = require('./routes/index');
+const auth = require('./routes/auth');
+const users = require('./routes/users')
+
 const register = require('./API/auth/registerApi');
 const login = require('./API/auth/loginApi');
 const refresh = require('./API/auth/refreshApi');
 const logout = require('./API/auth/logoutApi');
-const users = require('./API/userApi');
+const usersApi = require('./API/userApi');
 const messages = require('./API/contactMessageApi');
 const articles = require('./API/articleApi');
 const escraps = require('./API/escrapApi');
@@ -28,7 +31,11 @@ app.use(favicon(path.join(__dirname, 'public/images/fav', 'favicon.ico')));
 app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'views'));
 
+// Routes
 app.use('/', index);
+app.use('/auth', auth);
+app.use('/users', users);
+
 
 // Auth Apis
 app.use('/register', register);
@@ -37,7 +44,7 @@ app.use('/refresh', refresh);
 app.use('/logout', logout);
 
 // Public Apis
-app.use('/api/v1/users', users);
+app.use('/api/v1/users', usersApi);
 app.use('/api/v1/contactMessages', messages);
 app.use('/api/v1/articles', articles);
 app.use('/api/v1/escraps', escraps);

@@ -2,32 +2,28 @@ const User = require('../../Models/User');
 const bcrypt = require('bcrypt');
 
 const handleNewUser = async (req, res) => {
-    const newUser = new User(req.body);
-    if (!newUser.email || !newUser.password) return res.status(400).json({'message': 'Email and password are required'});
+    const { user, pwd } = req.body;
+    if (!user || !pwd) return res.status(400).json({ 'message': 'Username and password are required.' });
 
-    /*
-        Handle duplicate users
-    */
+    // check for duplicate usernames in the db
+    const duplicate = await User.findOne({ username: user }).exec();
+    if (duplicate) return res.sendStatus(409); //Conflict 
 
-    // if there are no duplicates continue with the function
     try {
-        // hash the password
-        const hashPassword = await bcrypt.hash(newUser.password, 10);
+        //encrypt the password
+        const hashedPwd = await bcrypt.hash(pwd, 10);
 
-        newUser.password = hashPassword;
-        newUser.loggedIn = true;
+        //create and store the new user
+        const result = await User.create({
+            "username": user,
+            "password": hashedPwd
+        });
 
-        // save new user to the database
-        await newUser.save()
-            .then((data) => {
-                res.status(201).json({"message": `New user ${data} created`});
-            }).catch(err => {
-                res.status(400).json({
-                    "message": `Error saving new user to the database: ${err}`
-                })
-            });
+        console.log(result);
+
+        res.status(201).json({ 'success': `New user ${user} created!` });
     } catch (err) {
-        res.status(500).json({"message": err.message});
+        res.status(500).json({ 'message': err.message });
     }
 }
 

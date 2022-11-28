@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  include ../partials/userNav.jade
+  div(class="container" id="container")
+    if gigs.length > 0
+      table(class="table")
+        tr
+          td Date
+          td Title
+          td Applicants Count 
+          td
+        each gig in gigs
+          tr
+            td=gig.creationDate.toDateString()
+            td= gig.title
+            td
+              a(href="/applicants/" + gig._id)=gig.applicants.length 
+            td
+              span
+                a(href="/editGig/" + gig._id)
+                  button(class="btn btn-warning") Edit
+              span  
+              span
+                form(class="form" action="/deleteGig" method="POST")
+                  input(type="hidden" value=gig._id name="_id")
+                  input(type="submit" class="btn btn-danger" value="Delete")
+    else
+      h2 Sorry No gigs available at this time

@@ -1,0 +1,62 @@
+extends ../layout
+
+block content
+  include ../partials/userNav.jade
+  div(class="container" id="container")
+    h2(class="text-center")
+        span Edit 
+        span=gig.title
+    br
+    form(action=action="/editGig" method="POST" class="form")
+      label(for="title") Title
+      input(class="form-control" value=gig.title type="text" name="title" required)
+      br
+      label(for="companyName") Company Name
+      input(class="form-control" type="text" value=gig.companyName name="companyName")
+      br
+      label(for="compensation") Compensation
+      input(class="form-control" type="number" value=gig.compensation name="compensation")
+      br
+      label(for="payPeriod") Pay Period
+      input(class="form-control" type="string" value=gig.payPeriod name="payPeriod")
+      br
+      label(for="websiteLink") Website
+      input(class="form-control" type="string" value=gig.websiteLink name="websiteLink")
+      br
+      label(for="facebookLink") Facebook Url
+      input(class="form-control" type="string" value=gig.facebookLink name="facebookLink")
+      br
+      label(for="twitterLink") Twitter Url
+      input(class="form-control" type="string" value=gig.twitterLink name="twitterLink")
+      br
+      label(for="instagramLink") Instagram Url
+      input(class="form-control" type="string" value=gig.instagramLink name="instagramLink")
+      br
+      label(for="address") Address
+      input(class="form-control" type="string" value=gig.address name="address")
+      br
+      label(for="city") City
+      input(class="form-control" type="string" value=gig.city name="city")
+      br
+      label(for="stateLink") State
+      input(class="form-control" type="string" value=gig.stateLink name="stateLink")
+      br
+      label(for="zipcode") Zip Code
+      input(class="form-control" type="string" value=gig.zipcode name="zipcode")
+      br
+      label(for="travelType") Travel Type
+      input(class="form-control" type="string" value=gig.travelType name="travelType" placeholder="Remote? In Person?")
+      br
+      label(for="category") Job Category
+      input(class="form-control" type="string" value=gig.category name="category")
+      br
+      label(for="contactNumber") Phone Number
+      input(class="form-control" type="string" value=gig.contactNumber name="contactNumber")
+      br
+      label(for="contactEmail") Email
+      input(class="form-control" type="string" value=gig.contactEmail name="contactEmail")
+      br
+      label(for="description") Description
+      textarea(class="form-control" value=gig.description name="description")
+      br
+      input(type="submit" class="btn btn-success" value="Edit Gig or Job")

@@ -37,8 +37,21 @@ a {
 }
 
 @media only screen and (min-width: 300px) {
+  #subTitle {
+    font-size: 14px;
+  }
+
+  #hero {
+    justify-content: center;
+  }
+
   #websiteLinks:link {
     color: black;
+  }
+
+  #container {
+    margin-top: 15%;
+    margin-bottom: 10%;
   }
   
   /* visited link */
