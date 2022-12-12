@@ -4,3 +4,9 @@ block content
   include ../../partials/staticnav.jade
   each gig in gigs
     p= gig.title
+    script(async='', src='https://www.googletagmanager.com/gtag/js?id=G-FLEKPR06BM')
+    script.
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FLEKPR06BM');

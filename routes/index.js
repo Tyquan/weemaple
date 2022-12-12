@@ -12,8 +12,9 @@ let session;
 const getPagination = (page, size) => {
   const limit = size ? +size : 10;
   const offset = page ? page * limit : 0;
+  
 
-  return { limit, offset };
+  return { limit, offset, sort: {creationDate: 'desc'} };
 };
 
 /* GET home page. */
@@ -23,14 +24,17 @@ router.get('/', async (req, res, next) => {
     let condition = title
     ? { title: { $regex: new RegExp(title), $options: "i" } }
     : {};
-    let sort = (a, b) => {
-      return b.creationDate - a.creationDate;
-    };
+    // let sort = (a, b) => {
+    //   return b.creationDate - a.creationDate;
+    // };
 
-    const { limit, offset } = getPagination(page, size); 
-    Gig.paginate(condition, {offset, limit})
+    const { limit, offset, sort } = getPagination(page, size); 
+    Gig.paginate(condition, {offset, limit, sort})
     .then((dat) => {
       console.log("data", dat);
+      dat.docs.sort((a, b) => {
+        return b.creationDate - a.creationDate;
+      })
       res.render('index', { 
         title: 'Weemaple - Jobs and Gigs Search | weemaple.com', 
         totalItems: dat.totalDocs,
