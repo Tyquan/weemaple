@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mongoosePaginate = require('mongoose-paginate-v2');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
@@ -48,5 +49,7 @@ const GigSchema = Schema({
         }
     ]
 }, {strict: false});
+
+GigSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model("Gig", GigSchema);

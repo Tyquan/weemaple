@@ -1,4 +1,6 @@
 const express = require('express');
+const mongoose = require("mongoose");
+const mongoosePaginate = require('mongoose-paginate-v2');
 const Gig = require('../Models/Gig');
 const bcrypt = require('bcrypt');
 const User = require('../Models/User');
@@ -7,47 +9,46 @@ const router = express.Router();
 
 let session;
 
+const getPagination = (page, size) => {
+  const limit = size ? +size : 10;
+  const offset = page ? page * limit : 0;
+
+  return { limit, offset };
+};
+
 /* GET home page. */
 router.get('/', async (req, res, next) => {
   session = req.session;
   if (session.userId)
   {
     res.send("Welcome User <a href=\'/auth/logout'>click to logout</a>")
-  } else {
-    // try {
-    //   const { page = 1, limit = 10 } = req.query;
-    //   const gigs = await Gig.find()
-    //     .sort((a,b) => {
-    //         return b.creationDate - a.creationDate;
-    //     })
-    //     .limit(limit * 1)
-    //     .skip((page - 1) * limit)
-    //     .exec();
+  } else {   
+    const { page, size, title } = req.query;
+    let condition = title
+    ? { title: { $regex: new RegExp(title), $options: "i" } }
+    : {};
+    let sort = (a, b) => {
+      return b.creationDate - a.creationDate;
+    };
 
-    //   const count = await Gig.count();
-
-    //   res.render('index', { 
-    //     title: 'Weemaple - Jobs and Gigs Search | weemaple.com', 
-    //     message: "", 
-    //     gigs,
-    //     totalPages: Math.ceil(count / limit),
-    //     currentPage: page
-    //   });
-    // }
-    // catch(err) {
-    //   throw err;
-    // }
-    
-    Gig.find().then(data => {
-      let sortedGigs = data.sort((a,b) => {
-        return b.creationDate - a.creationDate;
-      })
+    const { limit, offset } = getPagination(page, size); 
+    Gig.paginate(condition, {offset, limit})
+    .then((dat) => {
+      console.log("data", dat);
       res.render('index', { 
         title: 'Weemaple - Jobs and Gigs Search | weemaple.com', 
-        message: "", 
-        gigs: sortedGigs
-      });
-    }).catch(err => {throw err});
+        totalItems: dat.totalDocs,
+        gigs: dat.docs,
+        totalPages: dat.totalPages,
+        currentPage: dat.page,
+        nextPage: dat.nextPage,
+        prevPage: dat.prevPage,
+        hasNextPage: dat.hasNextPage,
+        hasPrevPage: dat.hasPrevPage,
+        message: ""
+      })
+      
+    }).catch(err => { throw err; })
   }
   
 });

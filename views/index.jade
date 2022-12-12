@@ -11,19 +11,45 @@ block content
           input(type="submit" class="btn btn-success" value="Find Gigs")
     hr
     br
+    p
+      span=totalItems
+      span  Opportunities
     if gigs.length > 0
       each gig in gigs
-        h2= gig.title
-        h3
-          span= gig.creationDate.toDateString()
-          span  - 
-          span= gig.city
-          span , 
-          span= gig.stateLink
-        p= gig.description.substring(0, 200)
-          span ...
-        p
-          a(href="/singleGig/" + gig._id) View Job
-        br
+        a(href="/singleGig/" + gig._id)
+          h2= gig.title
+          h3
+            span= gig.creationDate.toDateString()
+            span  - 
+            span= gig.city
+            span , 
+            span= gig.stateLink
+          p= gig.description.substring(0, 200)
+            span ...
+          p View Job
+          br
+      p
+        span Page 
+        span=currentPage
+        span  of 
+        span= totalPages
+        span  Pages
+      div(class="row")
+        div(class="col")
+          if hasPrevPage
+            a(href="?page=" + (currentPage - 1))
+              div(id="prevPage")
+                img(id="nextImage" src="/images/icon-png/arrow-l-white.png", alt="next arrow icon", srcset="")
+                span  
+                span Page 
+                span=prevPage
+        div(class="col")
+          if hasNextPage
+            a(href="?page=" + currentPage)
+              div(id="nextPage")
+                span Page 
+                span=nextPage
+                span  
+                img(id="nextImage" src="/images/icon-png/arrow-r-white.png", alt="next arrow icon", srcset="")
     else
       h2 Sorry No gigs available at this time

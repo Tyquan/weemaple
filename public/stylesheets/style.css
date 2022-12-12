@@ -34,7 +34,33 @@ body {
 
 a {
   color: black;
+  text-decoration: none;
 }
+a:hover {
+  color: black;
+}
+
+#nextPage {
+  width: 100%;
+  background-color: green;
+  color: white;
+  text-align: center;
+  height: px;
+  height: 100%;
+  font-size: 20px;
+  padding: 5%;
+}
+#prevPage {
+  width: 100%;
+  background-color: #FFA800;
+  color: white;
+  text-align: center;
+  height: px;
+  height: 100%;
+  font-size: 20px;
+  padding: 5%;
+}
+
 
 @media only screen and (min-width: 300px) {
   #subTitle {
