@@ -19,11 +19,7 @@ const getPagination = (page, size) => {
 /* GET home page. */
 router.get('/', async (req, res, next) => {
   session = req.session;
-  if (session.userId)
-  {
-    res.send("Welcome User <a href=\'/auth/logout'>click to logout</a>")
-  } else {   
-    const { page, size, title } = req.query;
+  const { page, size, title } = req.query;
     let condition = title
     ? { title: { $regex: new RegExp(title), $options: "i" } }
     : {};
@@ -49,7 +45,6 @@ router.get('/', async (req, res, next) => {
       })
       
     }).catch(err => { throw err; })
-  }
   
 });
 
