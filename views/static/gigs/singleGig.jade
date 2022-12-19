@@ -4,16 +4,18 @@ block content
   include ../../partials/staticnav.jade
   div(class="container" id="container")
     div(class="row")
-      div(class="col")
+      div(class="col-md-12")
         h2= gig.title
-        p
-          span= gig.creationDate
-          span  
-          span= gig.city
-          span , 
-          span= gig.stateLink
-        br
-        p= gig.description
+        div(class="row")
+          div(class="col-md-8")
+            p
+              span= gig.creationDate.toDateString()
+              span  
+              span= gig.city
+              span , 
+              span= gig.stateLink
+            br
+            p= gig.description
     hr
     div(class="row")
       div(class="col")

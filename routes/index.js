@@ -84,6 +84,12 @@ router.get('/about-us', function(req, res, next) {
   res.render('static/eezy', { title: 'Weemaple', message: "" });
 });
 
+router.get('/build-with-us', (req, res) => {
+  res.render('static/buildWithUs', {
+    title: 'Weemaple'
+  })
+});
+
 
 // AUTH ROUTES
 // SIGNUP
