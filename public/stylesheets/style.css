@@ -61,6 +61,29 @@ a:hover {
   padding: 5%;
 }
 
+#jobs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#jobContainer {
+  width: 48%;
+  background-color: #f5f6fa;
+  color: white;
+  padding: 2%;
+  margin: 1%;
+  border: 1px solid #40739e;
+  border-radius: 10px;
+}
+#gigTitle {
+  font-weight: 600;
+  font-size: 20px;
+}
+#gigDetails {
+  font-size: 18px;
+}
+
 
 @media only screen and (min-width: 300px) {
   #subTitle {
@@ -73,6 +96,7 @@ a:hover {
 
   #hero {
     justify-content: center;
+    padding-top: 10%;
   }
 
   #websiteLinks:link {
@@ -116,6 +140,19 @@ a:hover {
     -webkit-box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
             box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
     
+  }
+
+  #buildHero {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #000000;
+    position: relative;
+    height: 600px;
+    color: white;
+    -webkit-box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
+            box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.5);
+    background-image: url("https://media.wired.com/photos/59484e47e6e0c85d15bfcb7e/master/w_2560%2Cc_limit/1-Ck3cQIL3-nAmpPpCdGIuBg.jpg");
   }
 
   #mainHeroB {
