@@ -8,17 +8,24 @@ block content
         h2= gig.title
         div(class="row")
           div(class="col")
+            p= gig.companyName
             p
               span= gig.creationDate.toDateString()
               span  
               span= gig.city
               span , 
               span= gig.stateLink
+            p= gig.travelType
             a(href=gig.websiteLink target="_blank")
               button(class="btn btn-success") Apply On Company Website
             br
             br
             pre(id="description")= gig.description
+            br
+            p Compensation: 
+              span= gig.compensation
+            p Pay Frequency: 
+              span= gig.payPeriod
         br
         a(href=gig.websiteLink target="_blank")
               button(class="btn btn-success") Apply On Company Website
