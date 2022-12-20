@@ -14,28 +14,14 @@ block content
               span= gig.city
               span , 
               span= gig.stateLink
+            a(href=gig.websiteLink target="_blank")
+              button(class="btn btn-success") Apply On Company Website
             br
-            p= gig.description
-    hr
-    div(class="row")
-      div(class="col")
-        div(id="application")
-          h3 Apply Here!
-          form(class="form" action="/apply" method="POST" id="applicationform")
-            input(type="hidden" value=gig._id name="_id")
-            label(for="name") Full Name
-            input(type="text" class="form-control" id="name" name="name" required)
             br
-            label(for="email") Email
-            input(type="email" class="form-control" id="name" name="email" required)
-            br
-            label(for="contactNumber") Phone Number
-            input(type="phone" class="form-control" id="contactNumber" name="contactNumber")
-            br
-            label(for="message") Message
-            textarea(class="form-control" id="message" name="message")
-            br
-            input(type="submit" class="btn btn-success")
+            span= gig.description
+        br
+        a(href=gig.websiteLink target="_blank")
+              button(class="btn btn-success") Apply On Company Website
     script(async='', src='https://www.googletagmanager.com/gtag/js?id=G-FLEKPR06BM')
     script.
       window.dataLayer = window.dataLayer || [];
