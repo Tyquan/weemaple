@@ -83,6 +83,10 @@ a:hover {
 #gigDetails {
   font-size: 18px;
 }
+#description {
+  white-space: pre-wrap;
+  text-align: justify;
+}
 
 
 @media only screen and (min-width: 300px) {

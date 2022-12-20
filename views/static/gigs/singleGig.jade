@@ -7,7 +7,7 @@ block content
       div(class="col-md-12")
         h2= gig.title
         div(class="row")
-          div(class="col-md-8")
+          div(class="col")
             p
               span= gig.creationDate.toDateString()
               span  
@@ -18,7 +18,7 @@ block content
               button(class="btn btn-success") Apply On Company Website
             br
             br
-            span= gig.description
+            pre(id="description")= gig.description
         br
         a(href=gig.websiteLink target="_blank")
               button(class="btn btn-success") Apply On Company Website
