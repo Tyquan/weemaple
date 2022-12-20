@@ -1,0 +1,66 @@
+extends ../../layout
+
+block content
+  include ../../partials/staticnav.jade
+  div(class="container" id="container")
+    form(class="form" id="filterForm" method="POST" action="/search")
+      div(class="row")
+        div(class="col-10")
+          input(type="text" class="form-control" id="jobType" name="jobType" placeholder="Job Type")
+        div(class="col-2")
+          input(type="submit" class="btn btn-success" value="Find trainings")
+    hr
+    br
+    div(class="row")
+      div(class="col-md-12")
+        p
+          span=totalItems
+          span  Opportunities
+        if trainings.length > 0
+          div(id="jobs")
+            each training in trainings
+              div(id="jobContainer")
+                a(href="/singletraining/" + training._id)
+                  h2(id="trainingTitle")= training.title
+                  h3(id="trainingDetails")= training.companyName
+                  h4(id="trainingDetails")
+                    span= training.creationDate.toDateString()
+                    span  - 
+                    span= training.city
+                    span , 
+                    span= training.stateLink
+                  p= training.description.substring(0, 200)
+                    span ...
+                  p View Job
+          p
+            span Page 
+            span=currentPage
+            span  of 
+            span= totalPages
+            span  Pages
+          div(class="row")
+            div(class="col-md-8")
+            div(class="col-md-2")
+              if hasPrevPage
+                a(href="?page=" + (currentPage - 1))
+                  div(id="prevPage")
+                    img(id="nextImage" src="/images/icon-png/arrow-l-white.png", alt="next arrow icon", srcset="")
+                    span  
+                    span Page 
+                    span=prevPage
+            div(class="col-md-2")
+              if hasNextPage
+                a(href="?page=" + currentPage)
+                  div(id="nextPage")
+                    span Page 
+                    span=nextPage
+                    span  
+                    img(id="nextImage" src="/images/icon-png/arrow-r-white.png", alt="next arrow icon", srcset="")
+        else
+          h2 Sorry No trainings available at this time
+      script(async='', src='https://www.googletagmanager.com/gtag/js?id=G-FLEKPR06BM')
+      script.
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FLEKPR06BM');

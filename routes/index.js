@@ -5,6 +5,7 @@ const Gig = require('../Models/Gig');
 const bcrypt = require('bcrypt');
 const User = require('../Models/User');
 const Contact = require('../Models/ContactMessage');
+const Training = require('../Models/Training');
 const router = express.Router();
 
 let session;
@@ -24,9 +25,6 @@ router.get('/', async (req, res, next) => {
     let condition = title
     ? { title: { $regex: new RegExp(title), $options: "i" } }
     : {};
-    // let sort = (a, b) => {
-    //   return b.creationDate - a.creationDate;
-    // };
 
     const { limit, offset, sort } = getPagination(page, size); 
     Gig.paginate(condition, {offset, limit, sort})
@@ -56,6 +54,37 @@ router.get('/singleGig/:id', (req, res, next) => {
   Gig.findById(req.params.id).then(data => {
     res.render('static/gigs/singleGig', { title: "Weemaple - " + data.title + " hiring now", gig: data });
   }).catch(err => { throw err; });
+});
+
+// Training Page
+router.get('/training', (req, res, next) => {
+  session = req.session;
+  const { page, size, title } = req.query;
+    let condition = title
+    ? { title: { $regex: new RegExp(title), $options: "i" } }
+    : {};
+
+    const { limit, offset, sort } = getPagination(page, size); 
+    Training.paginate(condition, {offset, limit, sort})
+    .then((dat) => {
+      console.log("data", dat);
+      dat.docs.sort((a, b) => {
+        return b.creationDate - a.creationDate;
+      })
+
+      res.render('/static/training/allTrainings', {
+        title: 'Weemaple - Jobs and Gigs Search | weemaple.com | Training', 
+        totalItems: dat.totalDocs,
+        trainings: dat.docs,
+        totalPages: dat.totalPages,
+        currentPage: dat.page,
+        nextPage: dat.nextPage,
+        prevPage: dat.prevPage,
+        hasNextPage: dat.hasNextPage,
+        hasPrevPage: dat.hasPrevPage,
+        message: ""
+      })
+    });
 });
 
 router.post('/search', (req, res, next) => {
@@ -168,9 +197,7 @@ router.get('/usergigs', (req, res, next) => {
   console.log("Gigs User Session:", String(session.userId));
   // let gigs = [];
   Gig.find().then(data => {
-    let gigs = data.filter((gig) => {
-      return gig.userId === String(session.userId);
-    }).sort((a, b) => {
+    let gigs = data.sort((a, b) => {
       return b.creationDate - a.creationDate;
     });
     res.render('users/gigs', { gigs: gigs });
