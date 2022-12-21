@@ -31,6 +31,9 @@ block content
                     span= gig.stateLink
                   p= gig.description.substring(0, 200)
                     span ...
+                  if gig.educationalRequirements
+                    p= gig.educationalRequirements
+                      span  Required
                   p View Job
           p
             span Page 

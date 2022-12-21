@@ -56,6 +56,18 @@ block content
       label(for="contactEmail") Email
       input(class="form-control" type="string" value=gig.contactEmail name="contactEmail")
       br
+      label(for="educationalRequirements") Educational Requirements
+      select(class="form-control" name="educationalRequirements")
+        option() Choose One
+        option(value="noRequirements") No Requirements
+        option(value="highSchool") High School Diploma / GED
+        option(value="someCollege") Some College Credits
+        option(value="currentlyAttending") Currently In College
+        option(value="associates") Associates Degree
+        option(value="bachelors") Bachelor's degree
+        option(value="masters") Masters Degree
+        option(value="phd") PHD Dregree
+      br
       p=gig.description
       label(for="description") Description
       textarea(class="form-control" value=gig.description name="description")

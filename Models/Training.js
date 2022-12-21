@@ -18,6 +18,7 @@ const TrainingSchema = Schema({
     days: String,
     classTime: String,
     prerequisites: String,
+    educationalRequirements: String,
     lastSignupDate: {
         type: Date
     },

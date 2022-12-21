@@ -34,6 +34,18 @@ block content
       label(for="travelType") Travel Type
       input(class="form-control" type="string" name="travelType" placeholder="Remote? In Person?")
       br
+      label(for="educationalRequirements") Educational Requirements
+      select(class="form-control" name="educationalRequirements")
+        option() Choose One
+        option(value="noRequirements") No Requirements
+        option(value="highSchool") High School Diploma / GED
+        option(value="someCollege") Some College Credits
+        option(value="currentlyAttending") Currently In College
+        option(value="associates") Associates Degree
+        option(value="bachelors") Bachelor's degree
+        option(value="masters") Masters Degree
+        option(value="phd") PHD Dregree
+      br
       label(for="category") Job Category
       input(class="form-control" type="string" name="category")
       br
