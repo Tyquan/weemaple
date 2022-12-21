@@ -26,8 +26,10 @@ block content
             p Prerequisites: 
               pre(id="description")= training.prerequisites
             p Last Signup Date: 
-              span= training.lastSignupDate.toDateString()
+              span  
+              pre(id="description")= training.lastSignupDate.toDateString()
             p Training Fee:
+              span  $
               span= training.fee
         br
         a(href=training.websiteLink target="_blank")
