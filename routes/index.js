@@ -58,6 +58,7 @@ router.get('/singleGig/:id', (req, res, next) => {
 
 // Training Page
 router.get('/training', (req, res, next) => {
+  // res.render('/static/training/trainings');
   session = req.session;
   const { page, size, title } = req.query;
     let condition = title
@@ -72,7 +73,7 @@ router.get('/training', (req, res, next) => {
         return b.creationDate - a.creationDate;
       })
 
-      res.render('/static/training/allTrainings', {
+      res.render('static/training/trainings', {
         title: 'Weemaple - Jobs and Gigs Search | weemaple.com | Training', 
         totalItems: dat.totalDocs,
         trainings: dat.docs,
@@ -85,6 +86,32 @@ router.get('/training', (req, res, next) => {
         message: ""
       })
     });
+});
+
+router.post('/searchtrainings', (req, res, next) => {
+  let { category } = req.body;
+  Training.find().then(data => {
+    const filteredTrainings = data.filter(training => {
+      return gig.category.includes(category);
+    }).sort((a,b) => {
+      return b.creationDate - a.creationDate;
+    });
+    res.render('static/training/searchResults', {
+      trainings: filteredTrainings,
+      title: "Weemaple - Training Search Category: " + category + " | weemaple.com"
+    })
+  }).catch((err) => {
+    throw err;
+  });
+});
+
+router.get('/singletraining/:id', (req, res, next) => {
+  Training.findById(req.params.id).then(data => {
+    res.render('static/training/singleTraining', { 
+      title: "Weemaple - " + data.title + " training", 
+      training: data 
+    });
+  }).catch(err => { throw err; });
 });
 
 router.post('/search', (req, res, next) => {
@@ -193,8 +220,28 @@ router.get('/dashboard', (req, res, next) => {
   res.render('users/dashboard');
 });
 
+router.get('/usertrainings', (req, res, next) => {
+  Training.find().then(data => {
+    let trainings = data.sort((a, b) => {
+      return b.creationDate - a.creationDate;
+    });
+    res.render('users/training/trainings', {trainings: trainings});
+  }).catch(err => { throw err; });
+});
+
+router.get('/createTraining', (req, res, next) => {
+  res.render('users/training/createTraining');
+});
+
+router.post('/createTraining', (req, res, next) => {
+  let newTraining = new Training(req.body);
+  newTraining.save().then(() => {
+    res.redirect('usertrainings');
+  }).catch(err => { throw err; });
+});
+
 router.get('/usergigs', (req, res, next) => {
-  console.log("Gigs User Session:", String(session.userId));
+  // console.log("Gigs User Session:", String(session.userId));
   // let gigs = [];
   Gig.find().then(data => {
     let gigs = data.sort((a, b) => {
@@ -205,13 +252,11 @@ router.get('/usergigs', (req, res, next) => {
 });
 
 router.get('/createGig', (req, res, next) => {
-  console.log("SESSION ID", session);
   res.render('users/createGig');
 });
 
 router.post('/createGig', (req, res) => {
   let newGig = new Gig(req.body);
-  newGig.userId = session.userId;
   newGig.save()
     .then(() => {
       res.redirect('usergigs');
@@ -238,12 +283,46 @@ router.get('/editGig/:id', (req, res) => {
   });
 });
 
-router.post('/editGig', (req, res) => {
-  Gig.findByIdAndUpdate(req.params.id).then(() => {
-    res.redirect('usergigs');
-  }).catch(err => {
-    throw err;
-  });
+router.post('/editGig', async (req, res) => {
+  const filter = req.params.id;
+  const updateDocument = {
+    $set: {
+      title: req.body.title,
+      companyName: req.body.companyName,
+      compensation: req.body.compensation,
+      payPeriod: req.body.payPeriod,
+      website: req.body.website,
+      facebookUrl: req.body.url,
+      twitterUrl: req.body.twitterUrl,
+      instagramUrl: req.body.instagramUrl,
+      address: req.body.address,
+      city: req.body.city,
+      stateLink: req.body.stateLink,
+      zipcode: req.body.zipcode,
+      travelType: req.body.travelType,
+      category: req.body.category,
+      phoneNumber: req.body.phoneNumber,
+      email: req.body.email,
+      description: req.body.description
+    }
+  };
+  const result = await Gig.updateOne(filter, updateDocument);
+  res.redirect('usergigs');
+  // console.log("Request body", req.body);
+  // Gig.findById(req.params.id).then(data => {
+  //   data = req.body;
+  //   console.log("Updated data:", data);
+  //   data.save().then(() => {
+  //     res.redirect('usergigs');
+  //   }).catch(err => {throw err;});
+  // }).catch(err => {throw err;});
+  // Gig.findByIdAndUpdate(req.params.id, req.body, (err, data) => {
+  //   if (!err) {
+  //     res.redirect('usergigs');
+  //   } else {
+  //     throw err;
+  //   }
+  // });
 });
 
 router.post('/apply', (req, res) => {

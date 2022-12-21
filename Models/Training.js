@@ -12,15 +12,15 @@ const TrainingSchema = Schema({
     fee: Number,
     description: String,
     websiteLink: String,
-    address: String,
     city: String,
     stateLink: String,
-    zipcode: String,
-    travelType: String,
     category: String,
-    keywords: String,
-    contactNumber: String,
-    contactEmail: String,
+    days: String,
+    classTime: String,
+    prerequisites: String,
+    lastSignupDate: {
+        type: Date
+    },
     creationDate: {
         type: Date,
         default: Date.now()

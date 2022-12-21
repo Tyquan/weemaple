@@ -3,10 +3,10 @@ extends ../../layout
 block content
   include ../../partials/staticnav.jade
   div(class="container" id="container")
-    form(class="form" id="filterForm" method="POST" action="/search")
+    form(class="form" id="filterForm" method="POST" action="/searchtrainings")
       div(class="row")
         div(class="col-10")
-          input(type="text" class="form-control" id="jobType" name="jobType" placeholder="Job Type")
+          input(type="text" class="form-control" id="jobType" name="category" placeholder="Training Category")
         div(class="col-2")
           input(type="submit" class="btn btn-success" value="Find trainings")
     hr
@@ -21,9 +21,9 @@ block content
             each training in trainings
               div(id="jobContainer")
                 a(href="/singletraining/" + training._id)
-                  h2(id="trainingTitle")= training.title
-                  h3(id="trainingDetails")= training.companyName
-                  h4(id="trainingDetails")
+                  h2(id="gigTitle")= training.title
+                  h3(id="gigDetails")= training.companyName
+                  h4(id="gigDetails")
                     span= training.creationDate.toDateString()
                     span  - 
                     span= training.city
@@ -31,7 +31,7 @@ block content
                     span= training.stateLink
                   p= training.description.substring(0, 200)
                     span ...
-                  p View Job
+                  p View Training
           p
             span Page 
             span=currentPage

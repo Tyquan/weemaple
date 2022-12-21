@@ -1,0 +1,49 @@
+extends ../../layout
+
+block content
+  include ../../partials/userNav.jade
+  div(class="container" id="container")
+    form(action=action="/createTraining" method="POST" class="form")
+      label(for="title") Title
+      input(class="form-control" type="text" name="title" required)
+      br
+      label(for="companyName") Company Name
+      input(class="form-control" type="text" name="companyName")
+      br
+      div(class="row")
+        div(class="col-md-6")
+            label(for="websiteLink") Training Website Url
+            input(class="form-control" type="string" name="websiteLink")
+        div(class="col-md-6")
+            label(for="fee") Training Fee
+            input(class="form-control" type="text" name="fee")
+      br
+      div(class="row")
+        div(class="col-md-6")
+            label(for="city") City
+            input(class="form-control" type="string" name="city")
+        div(class="col-md-6")
+            label(for="stateLink") State
+            input(class="form-control" type="string" name="stateLink")
+      br
+      div(class="row")
+        div(class="col-md-6")
+            label(for="category") Category
+            input(class="form-control" type="string" name="category")
+        div(class="col-md-6")
+            label(for="lastSignupDate") Last Signup Date
+            input(class="form-control" type="date" name="lastSignupDate")
+      br
+      label(for="prerequisites") Prerequisites
+      textarea(class="form-control" name="prerequisites")
+      br
+      label(for="description") Description
+      textarea(class="form-control" name="description")
+      br
+      input(type="submit" class="btn btn-success" value="Create")
+    script(async='', src='https://www.googletagmanager.com/gtag/js?id=G-FLEKPR06BM')
+    script.
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FLEKPR06BM');

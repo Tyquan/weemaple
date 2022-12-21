@@ -1,0 +1,33 @@
+extends ../../layout
+
+block content
+  include ../../partials/staticnav.jade
+  div(class="container" id="container")
+    form(class="form" id="filterForm" method="POST" action="/searchtrainings")
+      div(class="row")
+        div(class="col-10")
+          input(type="text" class="form-control" id="jobType" name="category" placeholder="Training Category")
+        div(class="col-2")
+          input(type="submit" class="btn btn-success" value="Find trainings")
+    hr
+    br
+    if trainings.length > 0
+      each training in trainings
+        h2= training.title
+        h3
+          span= training.city
+          span , 
+          span= training.stateLink
+        p= training.description.substring(0, 200)
+          span ...
+        p
+          a(href="/singletraining/" + training._id) View Job
+        br
+    else
+      h2 Sorry No trainings available at this time
+    script(async='', src='https://www.googletagmanager.com/gtag/js?id=G-FLEKPR06BM')
+    script.
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FLEKPR06BM');

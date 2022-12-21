@@ -1,0 +1,40 @@
+extends ../../layout
+
+block content
+  include ../../partials/staticnav.jade
+  div(class="container" id="container")
+    div(class="row")
+      div(class="col-md-12")
+        h2= training.title
+        div(class="row")
+          div(class="col")
+            p= training.companyName
+            p
+              span= training.creationDate.toDateString()
+              span  
+              span= training.city
+              span , 
+              span= training.stateLink
+            p Category: 
+              span= training.category
+            a(href=training.websiteLink target="_blank")
+              button(class="btn btn-success") View On Company Website
+            br
+            br
+            pre(id="description")= training.description
+            br
+            p Prerequisites: 
+              span= training.prerequisites
+            p Last Signup Date: 
+              span= training.lastSignupDate
+            p Training Fee:
+              span= training.fee
+        br
+        a(href=training.websiteLink target="_blank")
+              button(class="btn btn-success") View On Company Website
+    script(async='', src='https://www.googletagmanager.com/gtag/js?id=G-FLEKPR06BM')
+    script.
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FLEKPR06BM');
