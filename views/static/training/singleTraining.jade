@@ -24,9 +24,9 @@ block content
             pre(id="description")= training.description
             br
             p Prerequisites: 
-              span= training.prerequisites
+              pre(id="description")= training.prerequisites
             p Last Signup Date: 
-              span= training.lastSignupDate
+              span= training.lastSignupDate.toDateString()
             p Training Fee:
               span= training.fee
         br
