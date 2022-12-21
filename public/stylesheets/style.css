@@ -95,6 +95,25 @@ a:hover {
     font-size: 14px;
   }
 
+  .navbar-toggler {
+    background-color: blanchedalmond;
+    border-radius: 1rem;
+  }
+  .navbar-toggler-icon {
+    background-color: #a29bfe;
+    border-radius: 2rem;
+  }
+
+  #jobContainer {
+    width: 98%;
+    background-color: #f5f6fa;
+    color: white;
+    padding: 2%;
+    margin: 1%;
+    border: 1px solid #40739e;
+    border-radius: 10px;
+  }
+
   #error {
     color: red;
   }
@@ -250,11 +269,22 @@ a:hover {
   #container {
     margin-top: 12%;
   }
+  
 }
 
 @media only screen and (min-width: 900px) {
   #container {
     margin-top: 10%;
+  }
+
+  #jobContainer {
+    width: 48%;
+    background-color: #f5f6fa;
+    color: white;
+    padding: 2%;
+    margin: 1%;
+    border: 1px solid #40739e;
+    border-radius: 10px;
   }
 
   #mainHeroTitle {
