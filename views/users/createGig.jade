@@ -4,64 +4,101 @@ block content
   include ../partials/userNav.jade
   div(class="container" id="container")
     form(action=action="/users/createGig" method="POST" class="form")
-      label(for="title") Title
-      input(class="form-control" type="text" name="title" required)
+      div(class="row")
+        div(class="col-md-6")
+        div(class="col-md-6")
+      div(class="row")
+        div(class="col-md-6")
+          label(for="title") Title
+          input(class="form-control" type="text" name="title" required)
+        div(class="col-md-6")
+          label(for="companyName") Company Name
+          input(class="form-control" type="text" name="companyName")
       br
-      label(for="companyName") Company Name
-      input(class="form-control" type="text" name="companyName")
+      div(class="row")
+        div(class="col-md-6")
+          label(for="compensation") Compensation
+          input(class="form-control" type="number" name="compensation")
+        div(class="col-md-6")
+          label(for="payPeriod") Pay Period
+          input(class="form-control" type="string" name="payPeriod")
       br
-      label(for="compensation") Compensation
-      input(class="form-control" type="number" name="compensation")
+      div(class="row")
+        div(class="col-md-6")
+          label(for="websiteLink") Website
+          input(class="form-control" type="string" name="websiteLink")
+        div(class="col-md-6")
+          label(for="facebookLink") Facebook Url
+          input(class="form-control" type="string" name="facebookLink")
       br
-      label(for="payPeriod") Pay Period
-      input(class="form-control" type="string" name="payPeriod")
+      div(class="row")
+        div(class="col-md-6")
+          label(for="twitterLink") Twitter Url
+          input(class="form-control" type="string" name="twitterLink")
+        div(class="col-md-6")
+          label(for="instagramLink") Instagram Url
+          input(class="form-control" type="string" name="instagramLink")
       br
-      label(for="websiteLink") Job / Gig Website Url
-      input(class="form-control" type="string" name="websiteLink")
+      div(class="row")
+        div(class="col-md-6")
+          label(for="address") Address
+          input(class="form-control" type="string" name="address")
+        div(class="col-md-6")
+          label(for="city") City
+          input(class="form-control" type="string" name="city")
       br
-      label(for="address") Address
-      input(class="form-control" type="string" name="address")
+      div(class="row")
+        div(class="col-md-6")
+          include ./partials/createState.jade
+        div(class="col-md-6")
+          label(for="zipcode") Zip Code
+          input(class="form-control" type="string" name="zipcode")
       br
-      label(for="city") City
-      input(class="form-control" type="string" name="city")
+      div(class="row")
+        div(class="col-md-6")
+          label(for="travelType") Travel Type
+          select(class="form-control" name="travelType")
+            option() Choose One
+            option(value="Remote") Remote
+            option(value="In Person") In Person
+        div(class="col-md-6")
+          label(for="category") Job Category
+          input(class="form-control" type="string" name="category")
       br
-      label(for="stateLink") State
-      input(class="form-control" type="string" name="stateLink")
+      div(class="row")
+        div(class="col-md-6")
+          label(for="contactNumber") Phone Number
+          input(class="form-control" type="string" name="contactNumber")
+        div(class="col-md-6")
+          label(for="contactEmail") Email
+          input(class="form-control" type="string" name="contactEmail")
       br
-      label(for="zipcode") Zip Code
-      input(class="form-control" type="string" name="zipcode")
+      div(class="row")
+        div(class="col-md-6")
+          label(for="gigJob") Job or Gig?
+          select(class="form-control" name="gigJob")
+            option() Choose One
+            option(value="gig") Gig
+            option(value="job") Job
+        div(class="col-md-6")
+          label(for="educationalRequirements") Educational Requirements
+          select(class="form-control" name="educationalRequirements")
+            option() Choose One
+            option(value="No Requirements") No Requirements
+            option(value="High School / GED") High School Diploma / GED
+            option(value="Some College") Some College Credits
+            option(value="Currently Attending") Currently In College
+            option(value="Associates Degree") Associates Degree
+            option(value="Bachelors Degree") Bachelor's degree
+            option(value="Masters Degree") Masters Degree
+            option(value="PHD Degree") PHD Dregree
       br
-      label(for="travelType") Travel Type
-      input(class="form-control" type="string" name="travelType" placeholder="Remote? In Person?")
+      div(class="row")
+        div(class="col-md-12")
+          label(for="description") Description
+          textarea(class="form-control" name="description")
       br
-      label(for="gigJob") Educational Requirements
-      select(class="form-control" name="gigJob")
-        option() Choose One
-        option(value="gig") Gig
-        option(value="job") Job
-      br
-      label(for="educationalRequirements") Educational Requirements
-      select(class="form-control" name="educationalRequirements")
-        option() Choose One
-        option(value="No Requirements") No Requirements
-        option(value="High School / GED") High School Diploma / GED
-        option(value="Some College") Some College Credits
-        option(value="Currently Attending") Currently In College
-        option(value="Associates Degree") Associates Degree
-        option(value="Bachelors Degree") Bachelor's degree
-        option(value="Masters Degree") Masters Degree
-        option(value="PHD Degree") PHD Dregree
-      br
-      label(for="category") Job Category
-      input(class="form-control" type="string" name="category")
-      br
-      label(for="contactEmail") Email
-      input(class="form-control" type="string" name="contactEmail")
-      br
-      label(for="description") Description
-      textarea(class="form-control" name="description")
-      br
-      input(type="submit" class="btn btn-success" value="Create")
+      input(type="submit" class="btn btn-success" value="Create Gig or Job")
     script(async='', src='https://www.googletagmanager.com/gtag/js?id=G-FLEKPR06BM')
     script.
       window.dataLayer = window.dataLayer || [];

@@ -4,24 +4,28 @@ block content
   include ../../partials/userNav.jade
   div(class="container" id="container")
     if trainings.length > 0
-      table(class="table")
-        tr
-          td Date
-          td Title
-          td
-        each training in trainings
+      table(class="table table-hover table-bordered")
+        thead
           tr
-            td=training.creationDate.toDateString()
-            td= training.title
-            td
-              span
-                a(href="/edittraining/" + training._id)
-                  button(class="btn btn-warning") Edit
-              span  
-              span
-                form(class="form" action="/deletetraining" method="POST")
-                  input(type="hidden" value=training._id name="_id")
-                  input(type="submit" class="btn btn-danger" value="Delete")
+            td Date
+            td Title
+            td(class="text-center") Actions
+        each training in trainings
+          tbody 
+            tr
+              td=training.creationDate.toDateString()
+              td= training.title
+              td
+                div(class="row")
+                  div(class="col-sm-6")
+                    span
+                      a(href="/users/edittraining/" + training._id)
+                        button(class="btn btn-warning") Edit
+                  div(class="col-sm-6")
+                    span
+                      form(class="form" action="/users/deletetraining" method="POST")
+                        input(type="hidden" value=training._id name="_id")
+                        input(type="submit" class="btn btn-danger" value="Delete") 
     else
       h2 Sorry No trainings available at this time
     script(async='', src='https://www.googletagmanager.com/gtag/js?id=G-FLEKPR06BM')
