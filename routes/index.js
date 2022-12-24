@@ -81,7 +81,7 @@ router.get('/singleGig/:id', async (req, res, next) => {
   try {
     let gig = await Gig.findById(req.params.id);
 
-    res.render('static/gigs/singleGig', { title: "Weemaple - " + data.title + " hiring now", gig: gig });
+    res.render('static/gigs/singleGig', { title: "Weemaple - " + gig.title + " hiring now", gig: gig });
 
   } catch (error) {
     res.render('404', {
