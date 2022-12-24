@@ -3,8 +3,6 @@ const Gig = require('../Models/Gig');
 const Training = require('../Models/Training');
 const router = express.Router();
 
-let session;
-
 const getPagination = (page, size) => {
   const limit = size ? +size : 10;
   const offset = page ? page * limit : 0;
@@ -15,39 +13,39 @@ const getPagination = (page, size) => {
 
 /* GET home page. */
 router.get('/', async (req, res, next) => {
+  
   const { page, size, title } = req.query;
-    let condition = title
-    ? { title: { $regex: new RegExp(title), $options: "i" } }
-    : {};
+  
+  let condition = title ? { title: { $regex: new RegExp(title), $options: "i" }} : {};
+  
+  const { limit, offset, sort } = getPagination(page, size);
+  
+  try {
+    let gig = await Gig.paginate(condition, {offset, limit, sort});
+    
+    gig.docs.sort((a, b) => {
+      return b.creationDate - a.creationDate;
+    });
 
-    const { limit, offset, sort } = getPagination(page, size);
+    res.render('index', { 
+      title: 'Weemaple - Jobs and Gigs Search | weemaple.com', 
+      totalItems: gig.totalDocs,
+      gigs: gig.docs,
+      totalPages: gig.totalPages,
+      currentPage: gig.page,
+      nextPage: gig.nextPage,
+      prevPage: gig.prevPage,
+      hasNextPage: gig.hasNextPage,
+      hasPrevPage: gig.hasPrevPage,
+      message: ""
+    });
 
-    try {
-      let gig = await Gig.paginate(condition, {offset, limit, sort});
-
-      gig.docs.sort((a, b) => {
-        return b.creationDate - a.creationDate;
-      });
-
-      res.render('index', { 
-        title: 'Weemaple - Jobs and Gigs Search | weemaple.com', 
-        totalItems: gig.totalDocs,
-        gigs: gig.docs,
-        totalPages: gig.totalPages,
-        currentPage: gig.page,
-        nextPage: gig.nextPage,
-        prevPage: gig.prevPage,
-        hasNextPage: gig.hasNextPage,
-        hasPrevPage: gig.hasPrevPage,
-        message: ""
-      });
-
-    } catch (error) {
-      res.render('404', {
-        title: "Weemaple - Error Page", 
-        error: error
-      });
-    }
+  } catch (error) {
+    res.render('404', {
+      title: "Weemaple - Error Page", 
+      error: error
+    });
+  }
   
 });
 
@@ -81,6 +79,10 @@ router.get('/singleGig/:id', async (req, res, next) => {
   try {
     let gig = await Gig.findById(req.params.id);
 
+    gig.viewCount += 1;
+    
+    await gig.save();
+
     res.render('static/gigs/singleGig', { title: "Weemaple - " + gig.title + " hiring now", gig: gig });
 
   } catch (error) {
@@ -93,52 +95,57 @@ router.get('/singleGig/:id', async (req, res, next) => {
 });
 
 // Training Page
-router.get('/training', (req, res, next) => {
-  // res.render('/static/training/trainings');
-  session = req.session;
+router.get('/training', async (req, res, next) => {
   const { page, size, title } = req.query;
-    let condition = title
-    ? { title: { $regex: new RegExp(title), $options: "i" } }
-    : {};
+  
+  let condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
 
-    const { limit, offset, sort } = getPagination(page, size); 
-    Training.paginate(condition, {offset, limit, sort})
-    .then((dat) => {
-      console.log("data", dat);
-      dat.docs.sort((a, b) => {
-        return b.creationDate - a.creationDate;
-      })
+  const { limit, offset, sort } = getPagination(page, size); 
 
-      res.render('static/training/trainings', {
-        title: 'Weemaple - Jobs and Gigs Search | weemaple.com | Training', 
-        totalItems: dat.totalDocs,
-        trainings: dat.docs,
-        totalPages: dat.totalPages,
-        currentPage: dat.page,
-        nextPage: dat.nextPage,
-        prevPage: dat.prevPage,
-        hasNextPage: dat.hasNextPage,
-        hasPrevPage: dat.hasPrevPage,
-        message: ""
-      })
+  try {
+    let training = await Training.paginate(condition, {offset, limit, sort});
+
+    training.sort((a, b) => {
+      return b.creationDate - a.creationDate;
     });
+
+    res.render('static/training/trainings', {
+      title: 'Weemaple - Jobs and Gigs Search | weemaple.com | Training', 
+      totalItems: training.totalDocs,
+      trainings: training.docs,
+      totalPages: training.totalPages,
+      currentPage: training.page,
+      nextPage: training.nextPage,
+      prevPage: training.prevPage,
+      hasNextPage: training.hasNextPage,
+      hasPrevPage: training.hasPrevPage,
+      message: ""
+    });
+
+  } catch (error) {
+    throw error;
+  }
 });
 
-router.post('/searchtrainings', (req, res, next) => {
+router.post('/searchtrainings', async (req, res, next) => {
   let { category } = req.body;
-  Training.find().then(data => {
-    const filteredTrainings = data.filter(training => {
-      return gig.category.includes(category);
+  try {
+    let trainings = await Training.find();
+
+    const filteredTrainings = trainings.filter(training => {
+      return training.category.includes(category);
     }).sort((a,b) => {
       return b.creationDate - a.creationDate;
     });
+
     res.render('static/training/searchResults', {
       trainings: filteredTrainings,
       title: "Weemaple - Training Search Category: " + category + " | weemaple.com"
     })
-  }).catch((err) => {
+
+  } catch (error) {
     throw err;
-  });
+  }
 });
 
 router.get('/singletraining/:id', async (req, res, next) => {
@@ -146,7 +153,9 @@ router.get('/singletraining/:id', async (req, res, next) => {
 
     let training = await Training.findById(req.params.id);
 
-    console.log("Training:", training);
+    training.viewCount += 1;
+    
+    await training.save();
 
     res.render('static/training/singleTraining', { 
       title: "Weemaple - " + training.title + " training", 
@@ -155,15 +164,7 @@ router.get('/singletraining/:id', async (req, res, next) => {
   } catch(error) {
     throw error;
   }
-  // Training.findById(req.params.id).then(data => {
-  //   res.render('static/training/singleTraining', { 
-  //     title: "Weemaple - " + data.title + " training", 
-  //     training: data 
-  //   });
-  // }).catch(err => { throw err; });
 });
-
-
 
 router.get('/weegigs', function(req, res, next) {
   res.render('static/gigs/gigs', { title: 'Weemaple', message: "" });
@@ -178,9 +179,5 @@ router.get('/build-with-us', (req, res) => {
     title: 'Weemaple'
   })
 });
-
-
-
-
 
 module.exports = router;

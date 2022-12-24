@@ -17,6 +17,10 @@ const TrainingSchema = Schema({
     category: String,
     days: String,
     classTime: String,
+    viewCount: {
+        type: Number,
+        default: 0
+    },
     prerequisites: String,
     educationalRequirements: String,
     lastSignupDate: {

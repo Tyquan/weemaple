@@ -22,6 +22,10 @@ const GigSchema = Schema({
     stateLink: String,
     zipcode: String,
     travelType: String,
+    viewCount: {
+        type: Number,
+        default: 0
+    },
     category: String,
     keywords: String,
     contactNumber: String,

@@ -3,7 +3,7 @@ extends ../../layout
 block content
   include ../../partials/userNav.jade
   div(class="container" id="container")
-    form(action=action="/createTraining" method="POST" class="form")
+    form(action=action="/users/createTraining" method="POST" class="form")
       label(for="title") Title
       input(class="form-control" type="text" name="title" required)
       br
