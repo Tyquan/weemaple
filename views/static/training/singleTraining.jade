@@ -23,8 +23,9 @@ block content
             br
             pre(id="description")= training.description
             br
-            p Education Requirement: 
-              span= gig.educationalRequirements
+            if (gig.educationalRequirements)
+              p Education Requirement: 
+                span= gig.educationalRequirements
             p Prerequisites: 
               pre(id="description")= training.prerequisites
             p Last Signup Date: 

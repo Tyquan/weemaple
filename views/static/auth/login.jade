@@ -8,7 +8,7 @@ block content
         div(class="col-12")
           h2 Login
           p(id="error")=message
-          form(class="form" method="POST" action="/login")
+          form(class="form" method="POST" action="/auth/login")
             label(for="email") Email:
             input(id="email" class="form-control" type="email" name="email" required)
             br
@@ -20,4 +20,4 @@ block content
       div(class="row")
         div(class="col-12")
           p Not A Member Yet? 
-            a(href="/signup") Sign Up Here
+            a(href="/auth/signup") Sign Up Here
