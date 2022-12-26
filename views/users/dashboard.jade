@@ -4,3 +4,6 @@ block content
   include ../partials/userNav.jade
   div(class="container" id="container")
     h1 Dashboard
+    each gig in gigs
+      h2= gig.title
+      p= gig.viewCount

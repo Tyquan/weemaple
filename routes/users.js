@@ -18,15 +18,17 @@ function sortByViewCount(data) {
 }
 
 // USERS ROUTES
-router.get('/dashboard', (req, res, next) => {
+router.get('/dashboard', async (req, res, next) => {
   try {
-    let trainings = Training.find();
-    let gigs = Training.find();
-    let sortedTrainings = sortByViewCount(trainings);
-    let sortedGigs = sortByViewCount(gigs);
+    let trainings = await Training.find();
+    let gigs = await Training.find();
+    console.log("trainings", trainings);
+    console.log("gigs", gigs);
+    // let sortedTrainings = sortByViewCount(trainings);
+    // let sortedGigs = sortByViewCount(gigs);
     res.render('users/dashboard', {
-      trainings: sortedTrainings,
-      gigs: sortedGigs
+      trainings: trainings,
+      gigs: gigs
     });
   } catch (error) {
     throw error;
@@ -113,31 +115,6 @@ router.post('/editGig', async (req, res) => {
   } catch(error) {
     throw error;
   }
-  
-  // const filter = req.params.id;
-  // const updateDocument = {
-  //   $set: {
-  //     title: req.body.title,
-  //     companyName: req.body.companyName,
-  //     compensation: req.body.compensation,
-  //     payPeriod: req.body.payPeriod,
-  //     website: req.body.website,
-  //     facebookUrl: req.body.url,
-  //     twitterUrl: req.body.twitterUrl,
-  //     instagramUrl: req.body.instagramUrl,
-  //     address: req.body.address,
-  //     city: req.body.city,
-  //     stateLink: req.body.stateLink,
-  //     zipcode: req.body.zipcode,
-  //     travelType: req.body.travelType,
-  //     category: req.body.category,
-  //     phoneNumber: req.body.phoneNumber,
-  //     email: req.body.email,
-  //     description: req.body.description
-  //   }
-  // };
-  // const result = await Gig.updateOne(filter, updateDocument);
-  // res.redirect('usergigs');
 });
 
 

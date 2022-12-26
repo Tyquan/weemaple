@@ -62,8 +62,7 @@ block content
             option(value="Remote") Remote
             option(value="In Person") In Person
         div(class="col-md-6")
-          label(for="category") Job Category
-          input(class="form-control" type="string" name="category")
+          include ./partials/createCategory.jade
       br
       div(class="row")
         div(class="col-md-6")
@@ -87,7 +86,7 @@ block content
             option(value="No Requirements") No Requirements
             option(value="High School / GED") High School Diploma / GED
             option(value="Some College") Some College Credits
-            option(value="Currently Attending") Currently In College
+            option(value="Currently Attending College") Currently In College
             option(value="Associates Degree") Associates Degree
             option(value="Bachelors Degree") Bachelor's degree
             option(value="Masters Degree") Masters Degree
