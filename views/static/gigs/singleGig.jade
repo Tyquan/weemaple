@@ -5,29 +5,34 @@ block content
   div(class="container" id="container")
     div(class="row")
       div(class="col-md-12")
-        h2= gig.title
+        h2(id="gigTitle")= gig.title
         div(class="row")
           div(class="col")
-            p= gig.companyName
+            h3(id="gigDetails")= gig.companyName
+            if gig.compensation
+              h4(id="gigPay") $
+                span= gig.compensation
+                span  
+                span= gig.payPeriod
+            
+            h6
+              i= gig.travelType
+            if gig.educationalRequirements
+              p
+                span= gig.educationalRequirements
+                span  
+                span Required
             p
               span= gig.creationDate.toDateString()
               span  
               span= gig.city
               span , 
               span= gig.stateLink
-            p= gig.travelType
             a(href=gig.websiteLink target="_blank")
               button(class="btn btn-success") Apply On Company Website
             br
             br
             pre(id="description")= gig.description
-            br
-            p Education Requirement: 
-              span= gig.educationalRequirements
-            p Compensation: 
-              span= gig.compensation
-            p Pay Frequency: 
-              span= gig.payPeriod
         br
         a(href=gig.websiteLink target="_blank")
               button(class="btn btn-success") Apply On Company Website

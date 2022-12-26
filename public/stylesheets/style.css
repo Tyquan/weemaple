@@ -86,7 +86,8 @@ a:hover {
 #description {
   white-space: pre-wrap;
   text-align: justify;
-  font-size: 16px;
+  font-size: 18px;
+  font-family: "@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap')";
 }
 
 
@@ -253,6 +254,11 @@ a:hover {
   
   #webs {
     padding-top: 15%;
+  }
+
+  #gigPay {
+    color: darkgreen;
+    font-size: 18px;
   }
 }
 

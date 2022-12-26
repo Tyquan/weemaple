@@ -50,22 +50,50 @@ router.get('/', async (req, res, next) => {
 });
 
 router.post('/search', async (req, res, next) => {
-  let { jobType } = req.body;
+  let { jobType, stateLink } = req.body;
   jobType = jobType.charAt(0).toUpperCase() + jobType.slice(1);
   
   try {
     let gigs = await Gig.find();
 
-    const filteredGigs = gigs.filter(gig => {
-      return gig.title.includes(jobType);
-    }).sort((a,b) => {
+    // Filters
+    let sortedGigs = gigs.sort((a,b) => {
       return b.creationDate - a.creationDate;
     });
-
-    res.render('static/gigs/searchResults', {
-      gigs: filteredGigs, title: "Weemaple - Job Search Category: " + jobType + " | weemaple.com"
+    const filteredGigs = sortedGigs.filter(gig => {
+      return gig.title.includes(jobType);
+    });
+    let stateJobs = filteredGigs.filter(job => {
+      return job.stateLink == stateLink;
     });
 
+    if (jobType == "") {
+      // if User doesnt input a jobType title
+      if (stateLink == "") {
+        // If user also doesnt input a stateLink
+        res.render('static/gigs/searchResults', {
+          gigs: sortedGigs, title: "Weemaple Jobs Search | weemaple.com"
+        });
+      } else {
+        // If user inputs a stateLink
+        res.render('static/gigs/searchResults', {
+          gigs: stateJobs, title: "Weemaple - " + " Location: " + stateLink + " | weemaple.com"
+        });
+      }
+    } else {
+      // If User inputs a jobType title
+      if (stateLink == "") {
+        // If User doesnt input a stateLink
+        res.render('static/gigs/searchResults', {
+          gigs: filteredGigs, title: "Weemaple - Job Search Title: " + jobType + " | weemaple.com"
+        });
+      } else {
+        // If User also inputs a stateLink
+        res.render('static/gigs/searchResults', {
+          gigs: stateJobs, title: "Weemaple - Job Title: " + jobType + " Location: " + stateLink + " | weemaple.com"
+        });
+      }
+    }
   } catch (error) {
     res.render('404', {
       title: "Weemaple - Error Page", 
@@ -104,8 +132,8 @@ router.get('/training', async (req, res, next) => {
 
   try {
     let training = await Training.paginate(condition, {offset, limit, sort});
-
-    training.sort((a, b) => {
+    console.log("Training", training.docs);
+    training.docs.sort((a, b) => {
       return b.creationDate - a.creationDate;
     });
 

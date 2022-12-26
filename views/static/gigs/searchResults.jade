@@ -5,26 +5,39 @@ block content
   div(class="container" id="container")
     form(class="form" id="filterForm" method="POST" action="/search")
       div(class="row")
-        div(class="col-10")
-          input(type="text" class="form-control" id="jobType" name="jobType" placeholder="Job Type")
-        div(class="col-2")
-          input(type="submit" class="btn btn-success" value="Find Gigs")
+        div(class="col-sm-5")
+          label(for="jobType") Job Title
+          input(type="text" class="form-control" id="jobType" name="jobType" placeholder="3 letters is enough to begin the search...")
+        div(class="col-sm-5")
+          include ../../users/partials/createState.jade
+        div(class="col-sm-2")
+          br
+          input(type="submit" class="btn btn-success" value="Find Jobs")
     hr
     br
-    if gigs.length > 0
-      each gig in gigs
-        h2= gig.title
-        h3
-          span= gig.city
-          span , 
-          span= gig.stateLink
-        p= gig.description.substring(0, 200)
-          span ...
-        p
-          a(href="/singleGig/" + gig._id) View Job
-        br
-    else
-      h2 Sorry No gigs available at this time
+    div(class="row")
+      div(class="col-md-12")
+        if gigs.length > 0
+          div(id="jobs")
+            each gig in gigs
+              div(id="jobContainer")
+                a(href="/singleGig/" + gig._id)
+                  h2(id="gigTitle")= gig.title
+                  h3(id="gigDetails")= gig.companyName
+                  h4(id="gigDetails")
+                    span= gig.creationDate.toDateString()
+                    span  - 
+                    span= gig.city
+                    span , 
+                    span= gig.stateLink
+                  p= gig.description.substring(0, 200)
+                    span ...
+                  if gig.educationalRequirements
+                    p= gig.educationalRequirements
+                      span  Required
+                  p View Job
+        else
+          h2 Sorry No gigs available at this time
     script(async='', src='https://www.googletagmanager.com/gtag/js?id=G-FLEKPR06BM')
     script.
       window.dataLayer = window.dataLayer || [];

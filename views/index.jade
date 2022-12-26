@@ -5,10 +5,14 @@ block content
   div(class="container" id="container")
     form(class="form" id="filterForm" method="POST" action="/search")
       div(class="row")
-        div(class="col-10")
-          input(type="text" class="form-control" id="jobType" name="jobType" placeholder="Job Type")
-        div(class="col-2")
-          input(type="submit" class="btn btn-success" value="Find Gigs")
+        div(class="col-sm-5")
+          label(for="jobType") Job Title
+          input(type="text" class="form-control" id="jobType" name="jobType" placeholder="3 letters is enough to begin the search...")
+        div(class="col-sm-5")
+          include users/partials/createState.jade
+        div(class="col-sm-2")
+          br
+          input(type="submit" class="btn btn-success" value="Find Jobs")
     hr
     br
     div(class="row")
@@ -29,6 +33,11 @@ block content
                     span= gig.city
                     span , 
                     span= gig.stateLink
+                  if gig.compensation
+                    h4(id="gigPay") $
+                      span= gig.compensation
+                      span  
+                      span= gig.payPeriod
                   p= gig.description.substring(0, 200)
                     span ...
                   if gig.educationalRequirements
