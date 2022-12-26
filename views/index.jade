@@ -27,23 +27,23 @@ block content
                 a(href="/singleGig/" + gig._id)
                   h2(id="gigTitle")= gig.title
                   h3(id="gigDetails")= gig.companyName
-                  h4(id="gigDetails")
-                    span= gig.creationDate.toDateString()
-                    span  - 
-                    span= gig.city
-                    span , 
-                    span= gig.stateLink
                   if gig.compensation
                     h4(id="gigPay") $
                       span= gig.compensation
                       span  
                       span= gig.payPeriod
+                  h4(id="gigDetails")  
+                    span= gig.city
+                    span , 
+                    span= gig.stateLink
                   p= gig.description.substring(0, 200)
                     span ...
                   if gig.educationalRequirements
                     p= gig.educationalRequirements
                       span  Required
                   p View Job
+                  h4(id="gigDetails")
+                    small= gig.creationDate.toDateString()
           p
             span Page 
             span=currentPage
