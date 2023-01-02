@@ -212,38 +212,44 @@ router.get('/build-with-us', (req, res) => {
 });
 
 router.get('/transform', async (req, res) => {
-  let gigs = await Gig.find();
-  let total = gigs.length;
-  let result = [];
+  //let gigs = await Gig.find();
+  // let total = gigs.length;
+  // let result = [];
 
-  function saveAll() {
-    let doc = gigs.pop;
-    console.log("doc:", doc);
-    doc.slug = slugify(doc.title, {
-      lower: true,
-      trim: true
-    });
+  // function saveAll() {
+  //   let doc = gigs.pop;
+  //   console.log("doc:", doc);
+  //   doc.slug = slugify(doc.title, {
+  //     lower: true,
+  //     trim: true
+  //   });
 
-    doc.save((err, saved) => {
-      if (err) throw err;
-      result.push(saved[0]);
-      if (--total) saveAll();
-    });
-  }
-  saveAll();
-  
-
-  // for (let i = 0; i <= gigs.length; i++) {
-  //   gigs[i].get('slug');
-  //   if (gigs[i].slug == undefined || gigs[i].slug == "") {
-      
-  //     gigs[i].slug = slugify(gigs[i].title, {
-  //       lower: true,
-  //       trim: true
-  //     });
-  //     await gigs[i].save();
-  //   }
+  //   doc.save((err, saved) => {
+  //     if (err) throw err;
+  //     result.push(saved[0]);
+  //     if (--total) saveAll();
+  //   });
   // }
+  // saveAll();
+  // for (let i = 0; i <= gigs.length; i++) {
+  //   gigs[i].updateOne({id: gigs[i].id}, {slug: slugify(gigs[i].title, {
+  //     lower: true,
+  //     trim: true
+  //   })}, {multi: true});
+  // }
+  
+  Gig.updateMany({}, {$set: {"slug": null}});
+  let gigs = await Gig.find();
+  for (let i = 0; i <= gigs.length; i++) {
+    if (gigs[i].slug == undefined || gigs[i].slug == null || gigs[i].slug == "") {
+      
+      gigs[i].slug = slugify(gigs[i].title, {
+        lower: true,
+        trim: true
+      });
+      await gigs[i].save();
+    }
+  }
   res.render('static/success', {gigs:gigs});
 });
 
