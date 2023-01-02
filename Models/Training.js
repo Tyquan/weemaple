@@ -17,6 +17,7 @@ const TrainingSchema = Schema({
     category: String,
     days: String,
     classTime: String,
+    slug: String,
     viewCount: {
         type: Number,
         default: 0

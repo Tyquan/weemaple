@@ -15,6 +15,7 @@ const EscrapSchema = mongoose.Schema({
     addressCity: {
         type: String
     },
+    slug: String,
     addressState: {
         type: String
     },

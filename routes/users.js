@@ -54,6 +54,10 @@ router.get('/createTraining', (req, res, next) => {
 router.post('/createTraining', async (req, res, next) => {
   try {
     let newTraining = new Training(req.body);
+    newTraining.slug = slugify(newTraining.title, {
+      lower: true,
+      trim: true
+    })
     await newTraining.save();
     res.redirect('usertrainings');
   } catch (error) {
@@ -78,6 +82,10 @@ router.get('/createGig', (req, res, next) => {
 router.post('/createGig', async (req, res) => {
   try {
     let newGig = new Gig(req.body);
+    newGig.slug = slugify(newGig.title, {
+      lower: true,
+      trim: true
+    })
     await newGig.save();
     res.redirect('usergigs');
   } catch (error) {

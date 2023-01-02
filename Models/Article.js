@@ -10,6 +10,7 @@ const ArticleSchema = mongoose.Schema({
     views: {
         type: Number
     },
+    slug: String,
     body: {
         type: String
     },
