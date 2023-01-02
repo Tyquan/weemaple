@@ -24,35 +24,16 @@ block content
           input(class="form-control" type="string" name="payPeriod")
       br
       div(class="row")
-        div(class="col-md-6")
+        div(class="col-md-12")
           label(for="websiteLink") Website
           input(class="form-control" type="string" name="websiteLink")
-        div(class="col-md-6")
-          label(for="facebookLink") Facebook Url
-          input(class="form-control" type="string" name="facebookLink")
       br
       div(class="row")
-        div(class="col-md-6")
-          label(for="twitterLink") Twitter Url
-          input(class="form-control" type="string" name="twitterLink")
-        div(class="col-md-6")
-          label(for="instagramLink") Instagram Url
-          input(class="form-control" type="string" name="instagramLink")
-      br
-      div(class="row")
-        div(class="col-md-6")
-          label(for="address") Address
-          input(class="form-control" type="string" name="address")
         div(class="col-md-6")
           label(for="city") City
           input(class="form-control" type="string" name="city")
-      br
-      div(class="row")
         div(class="col-md-6")
           include ./partials/createState.jade
-        div(class="col-md-6")
-          label(for="zipcode") Zip Code
-          input(class="form-control" type="string" name="zipcode")
       br
       div(class="row")
         div(class="col-md-6")
@@ -63,14 +44,6 @@ block content
             option(value="In Person") In Person
         div(class="col-md-6")
           include ./partials/createCategory.jade
-      br
-      div(class="row")
-        div(class="col-md-6")
-          label(for="contactNumber") Phone Number
-          input(class="form-control" type="string" name="contactNumber")
-        div(class="col-md-6")
-          label(for="contactEmail") Email
-          input(class="form-control" type="string" name="contactEmail")
       br
       div(class="row")
         div(class="col-md-6")
