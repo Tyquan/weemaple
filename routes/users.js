@@ -1,4 +1,5 @@
 var express = require('express');
+const slugify = require('slugify');
 var router = express.Router();
 const Gig = require('../Models/Gig');
 const Contact = require('../Models/ContactMessage');
@@ -22,10 +23,6 @@ router.get('/dashboard', async (req, res, next) => {
   try {
     let trainings = await Training.find();
     let gigs = await Training.find();
-    console.log("trainings", trainings);
-    console.log("gigs", gigs);
-    // let sortedTrainings = sortByViewCount(trainings);
-    // let sortedGigs = sortByViewCount(gigs);
     res.render('users/dashboard', {
       trainings: trainings,
       gigs: gigs

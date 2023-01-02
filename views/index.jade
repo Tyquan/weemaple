@@ -7,7 +7,7 @@ block content
       div(class="row")
         div(class="col-sm-5")
           label(for="jobType") Job Title
-          input(type="text" class="form-control" id="jobType" name="jobType" placeholder="3 letters is enough to begin the search...")
+          input(type="text" x-webkit-speech class="form-control" id="jobType" name="jobType" placeholder="3 letters is enough to begin the search...")
         div(class="col-sm-5")
           include users/partials/createState.jade
         div(class="col-sm-2")
@@ -24,7 +24,7 @@ block content
           div(id="jobs")
             each gig in gigs
               div(id="jobContainer")
-                a(href="/singleGig/" + gig._id)
+                a(href="/job/" + gig.slug + "/" + gig._id)
                   h2(id="gigTitle")= gig.title
                   h3(id="gigDetails")= gig.companyName
                   if gig.compensation

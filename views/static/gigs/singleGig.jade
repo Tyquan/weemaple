@@ -12,9 +12,9 @@ block content
           span= gig.stateLink
         div(class="row")
           div(class="col")
-            h3(id="gigDetails")= gig.companyName
+            h4(id="gigDetails")= gig.companyName
             if gig.compensation
-              h4(id="gigPay") $
+              h5(id="gigPay") $
                 span= gig.compensation
                 span  
                 span= gig.payPeriod
@@ -23,9 +23,6 @@ block content
             if gig.educationalRequirements
               p
                 span= gig.educationalRequirements
-                span  
-                span Required
-            
             a(href=gig.websiteLink target="_blank")
               button(class="btn btn-success") Apply On Company Website
             br
