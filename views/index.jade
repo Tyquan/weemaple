@@ -16,7 +16,7 @@ block content
     hr
     br
     div(class="row")
-      div(class="col-md-12")
+      div(class="col-sm-12")
         p
           span=totalItems
           span  Opportunities
@@ -26,6 +26,8 @@ block content
               div(id="jobContainer")
                 a(href="/job/" + gig.slug + "/" + gig._id)
                   h2(id="gigTitle")= gig.title
+                  h4(id="gigDetails")
+                    small= gig.creationDate.toDateString()
                   h3(id="gigDetails")= gig.companyName
                   if gig.compensation
                     h4(id="gigPay") $
@@ -36,13 +38,11 @@ block content
                     span= gig.city
                     span , 
                     span= gig.stateLink
-                  p= gig.description.substring(0, 200)
+                  p= gig.description.substring(0, 100)
                     span ...
                   if gig.educationalRequirements
                     p= gig.educationalRequirements
                   p View Job
-                  h4(id="gigDetails")
-                    small= gig.creationDate.toDateString()
           p
             span Page 
             span=currentPage

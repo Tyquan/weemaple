@@ -1,9 +1,10 @@
 header
   nav.navbar.navbar-expand-lg.fixed-top(id="navbar")
     .container
-      h1 
-        a.navbar-brand(href='/') Weemaple 
-          span(id="subTitle") Search and Find Jobs
+      h1(id="logoTitle") 
+        a.navbar-brand(href='/')
+          img(src="/images/logo.png" id="logoImage")
+          span(id="title") Weemaple
       button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
         span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse
@@ -14,3 +15,12 @@ header
             a.nav-link(href='/training') Training
           li.nav-item
             a.nav-link(href='/about-us') About Us
+          li.nav-item
+            a.nav-link(target="_blank" href="https://www.instagram.com/weemaple_/" id="instagramLink")
+              span(class="bi bi-instagram") 
+          li.nav-item
+            a.nav-link(target="_blank" href="https://www.instagram.com/weemaple_/" id="twitterLink")
+              span(class="bi bi-twitter") 
+          li.nav-item
+            a.nav-link(target="_blank" href="https://www.tiktok.com/@weemaplellc7" id="tiktokLink")
+              span(class="bi bi-tiktok")

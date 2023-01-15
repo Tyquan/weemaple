@@ -5,7 +5,7 @@ const Training = require('../Models/Training');
 const router = express.Router();
 
 const getPagination = (page, size) => {
-  const limit = size ? +size : 10;
+  const limit = size ? +size : 16;
   const offset = page ? page * limit : 0;
   
 

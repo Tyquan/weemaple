@@ -74,21 +74,7 @@ a:hover {
   padding: 5%;
 }
 
-#jobs {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
 
-#jobContainer {
-  width: 48%;
-  background-color: #f5f6fa;
-  color: white;
-  padding: 2%;
-  margin: 1%;
-  border: 1px solid #40739e;
-  border-radius: 10px;
-}
 #gigTitle {
   font-weight: 600;
   font-size: 20px;
@@ -109,6 +95,23 @@ a:hover {
     font-size: 14px;
   }
 
+  #logoTitle {
+    width: 50%;
+    font-family: 'Secular One', sans-serif;
+  }
+
+  #footerTitle {
+    font-family: 'Secular One', sans-serif;
+    color: white;
+  }
+
+  #logoImage {
+    width: 15%;
+  }
+  #footerImage {
+    width: 7.5%;
+  }
+
   .navbar-toggler {
     background-color: blanchedalmond;
     border-radius: 1rem;
@@ -118,8 +121,25 @@ a:hover {
     border-radius: 2rem;
   }
 
+  #instagramLink:hover {
+    /* color: #C13584; */
+    color: #833AB4;
+  }
+  #twitterLink:hover {
+    color: #1DA1F2;
+  }
+  #tiktokLink:hover {
+    color: black;
+  }
+
+  #jobs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
   #jobContainer {
-    width: 98%;
+    width: 48%;
     background-color: #f5f6fa;
     color: white;
     padding: 2%;
@@ -273,6 +293,10 @@ a:hover {
     color: darkgreen;
     font-size: 18px;
   }
+
+  #footerTitle {
+    color: white;
+  }
 }
 
 @media only screen and (min-width: 500px) {
@@ -288,12 +312,27 @@ a:hover {
   #container {
     margin-top: 12%;
   }
+
+  #logoImage {
+    width: 13%;
+  }
+
+  #footerImage {
+    width: 6.5%;
+  }
   
 }
 
 @media only screen and (min-width: 900px) {
   #container {
     margin-top: 10%;
+  }
+
+  #logoImage {
+    width: 8%;
+  }
+  #footerImage {
+    width: 4%;
   }
 
   #jobContainer {
@@ -326,6 +365,12 @@ a:hover {
 }
 
 @media only screen and (min-width: 1200px) {
+  #logoImage {
+    width: 8%;
+  }
+  .nav-item {
+    font-size: 1.5rem
+  }
   #mainHeroContent {
     padding-top: 10%;
   }
@@ -339,5 +384,17 @@ a:hover {
   #mainHeroButton {
     padding-top: 2%;
     padding-left: 11.5%;
+  }
+  #jobContainer {
+    width: 23%;
+  }
+  #title {
+    font-size: 2rem;
+  }
+  #footerTitle {
+    font-size: 2rem;
+  }
+  #footerImage {
+    width: 4%;
   }
 }
