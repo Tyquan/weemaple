@@ -7,8 +7,6 @@ const router = express.Router();
 const getPagination = (page, size) => {
   const limit = size ? +size : 16;
   const offset = page ? page * limit : 0;
-  
-
   return { limit, offset, sort: {creationDate: 'desc'} };
 };
 
@@ -38,7 +36,8 @@ router.get('/', async (req, res, next) => {
       prevPage: gig.prevPage,
       hasNextPage: gig.hasNextPage,
       hasPrevPage: gig.hasPrevPage,
-      message: ""
+      message: "",
+      shortDescription: "With Weemaple, you can search for jobs online to find the next step in your career journey. We're to help you every stage of your employment."
     });
 
   } catch (error) {
@@ -49,6 +48,8 @@ router.get('/', async (req, res, next) => {
   }
   
 });
+
+
 
 router.post('/search', async (req, res, next) => {
   let { jobType, stateLink } = req.body;
@@ -78,7 +79,8 @@ router.post('/search', async (req, res, next) => {
       } else {
         // If user inputs a stateLink
         res.render('static/gigs/searchResults', {
-          gigs: stateJobs, title: "Weemaple - " + " Location: " + stateLink + " | weemaple.com"
+          gigs: stateJobs, title: "Weemaple - " + " Location: " + stateLink + " | weemaple.com",
+          shortDescription: "With Weemaple, you can search for jobs online to find the next step in your career journey. We're to help you every stage of your employment."
         });
       }
     } else {
@@ -91,7 +93,7 @@ router.post('/search', async (req, res, next) => {
       } else {
         // If User also inputs a stateLink
         res.render('static/gigs/searchResults', {
-          gigs: stateJobs, title: "Weemaple - Job Title: " + jobType + " Location: " + stateLink + " | weemaple.com"
+          gigs: stateJobs, title: "Weemaple - Job Title: " + jobType + " Location: " + stateLink + " | weemaple.com", shortDescription: "With Weemaple, you can search for jobs online to find the next step in your career journey. We're to help you every stage of your employment."
         });
       }
     }
@@ -104,6 +106,24 @@ router.post('/search', async (req, res, next) => {
   
 });
 
+router.get('/category/:slug/:id', async (req, res) => {
+  
+  let gig = await Gig.findById(req.params.id);
+  let gigs;
+  try {
+    gigs = await Gig.find({category: gig.category});
+    res.render('static/gigs/searchResults', {
+      gigs: gigs, title: "Weemaple - Job Category: " + "Category" + " | weemaple.com", shortDescription: "With Weemaple, you can search for jobs online to find the next step in your career journey. We're to help you every stage of your employment."
+    });
+  } catch(e) {
+    gigs = []
+    res.render('static/gigs/searchResults', {
+      gigs: gigs, title: "Weemaple - Job Category: " + "Category" + " | weemaple.com", shortDescription: "With Weemaple, you can search for jobs online to find the next step in your career journey. We're to help you every stage of your employment."
+    });
+  }
+  
+})
+
 router.get('/job/:slug/:id', async (req, res, next) => {
   try {
     let gig = await Gig.findById(req.params.id);
@@ -112,7 +132,15 @@ router.get('/job/:slug/:id', async (req, res, next) => {
     
     await gig.save();
 
-    res.render('static/gigs/singleGig', { title: "Weemaple - " + gig.title + " hiring now", gig: gig });
+    console.log("Gig:", gig);
+    let shortDescriptionGig = "";
+    if (gig.shortDescription === null || gig.shortDescription === "") {
+      shortDescriptionGig = `Weemaple Job Available - ${gig.title}`
+    } else {
+      shortDescriptionGig = gig.shortDescription;
+    }
+
+    res.render('static/gigs/singleGig', { title: "Weemaple - " + gig.title + " hiring now", gig: gig, shortDescription: shortDescriptionGig });
 
   } catch (error) {
     res.render('404', {
@@ -148,6 +176,7 @@ router.get('/training', async (req, res, next) => {
       prevPage: training.prevPage,
       hasNextPage: training.hasNextPage,
       hasPrevPage: training.hasPrevPage,
+      shortDescription: "With Weemaple, you can search for jobs online to find the next step in your career journey. We're to help you every stage of your employment.",
       message: ""
     });
 
@@ -169,7 +198,8 @@ router.post('/searchtrainings', async (req, res, next) => {
 
     res.render('static/training/searchResults', {
       trainings: filteredTrainings,
-      title: "Weemaple - Training Search Category: " + category + " | weemaple.com"
+      title: "Weemaple - Training Search Category: " + category + " | weemaple.com",
+      shortDescription: "With Weemaple, you can search for jobs online to find the next step in your career journey. We're to help you every stage of your employment."
     })
 
   } catch (error) {
@@ -188,7 +218,8 @@ router.get('/singletraining/:id', async (req, res, next) => {
 
     res.render('static/training/singleTraining', { 
       title: "Weemaple - " + training.title + " training", 
-      training: training
+      training: training,
+      shortDescription: "With Weemaple, you can search for jobs online to find the next step in your career journey. We're to help you every stage of your employment."
     });
   } catch(error) {
     throw error;
@@ -196,16 +227,16 @@ router.get('/singletraining/:id', async (req, res, next) => {
 });
 
 router.get('/weegigs', function(req, res, next) {
-  res.render('static/gigs/gigs', { title: 'Weemaple', message: "" });
+  res.render('static/gigs/gigs', { title: 'Weemaple', message: "", shortDescription: "With Weemaple, you can search for jobs online to find the next step in your career journey. We're to help you every stage of your employment." });
 });
 
 router.get('/about-us', function(req, res, next) {
-  res.render('static/eezy', { title: 'Weemaple', message: "" });
+  res.render('static/eezy', { title: 'Weemaple', message: "", shortDescription: "With Weemaple, you can search for jobs online to find the next step in your career journey. We're to help you every stage of your employment." });
 });
 
 router.get('/build-with-us', (req, res) => {
   res.render('static/buildWithUs', {
-    title: 'Weemaple'
+    title: 'Weemaple', shortDescription: "With Weemaple, you can search for jobs online to find the next step in your career journey. We're to help you every stage of your employment."
   })
 });
 

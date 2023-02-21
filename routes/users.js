@@ -25,7 +25,8 @@ router.get('/dashboard', async (req, res, next) => {
     let gigs = await Training.find();
     res.render('users/dashboard', {
       trainings: trainings,
-      gigs: gigs
+      gigs: gigs,
+      shortDescription: "With Weemaple, you can search for jobs online to find the next step in your career journey. We're to help you every stage of your employment."
     });
   } catch (error) {
     throw error;
@@ -37,7 +38,8 @@ router.get('/usertrainings', async (req, res, next) => {
     let trainings = await Training.find();
     let filteredTrainings = sortByDate(trainings);
     res.render('users/training/trainings', {
-      trainings: filteredTrainings
+      trainings: filteredTrainings,
+      shortDescription: "With Weemaple, you can search for jobs online to find the next step in your career journey. We're to help you every stage of your employment."
     });
   } catch (error) {
     throw error;
@@ -45,7 +47,7 @@ router.get('/usertrainings', async (req, res, next) => {
 });
 
 router.get('/createTraining', (req, res, next) => {
-  res.render('users/training/createTraining');
+  res.render('users/training/createTraining', {shortDescription: "With Weemaple, you can search for jobs online to find the next step in your career journey. We're to help you every stage of your employment."});
 });
 
 router.post('/createTraining', async (req, res, next) => {
@@ -66,14 +68,14 @@ router.get('/usergigs', async (req, res, next) => {
   try {
     let gigs = await Gig.find();
     let sortedGigs = sortByDate(gigs);
-    res.render('users/gigs', { gigs: sortedGigs });
+    res.render('users/gigs', { gigs: sortedGigs, shortDescription: "With Weemaple, you can search for jobs online to find the next step in your career journey. We're to help you every stage of your employment." });
   } catch (error) {
     throw error;
   }
 });
 
 router.get('/createGig', (req, res, next) => {
-  res.render('users/createGig');
+  res.render('users/createGig', {shortDescription: "With Weemaple, you can search for jobs online to find the next step in your career journey. We're to help you every stage of your employment."});
 });
 
 router.post('/createGig', async (req, res) => {
@@ -104,7 +106,7 @@ router.get('/editGig/:id', async (req, res) => {
   try {
     let gig = await Gig.findById(req.params.id);
     res.render('users/editGig', {
-      gig: gig
+      gig: gig, shortDescription: "With Weemaple, you can search for jobs online to find the next step in your career journey. We're to help you every stage of your employment."
     })
   } catch (error) {
     throw error;
@@ -115,7 +117,7 @@ router.post('/editGig', async (req, res) => {
   try {
     let gig = await Gig.findById(req.params.id);
     gig = req.body;
-    await gig.save(); 
+    await gig.save();
     res.redirect('usergigs');
   } catch(error) {
     throw error;
@@ -129,7 +131,7 @@ router.post('/contact', async (req, res) => {
     await message.save();
     res.redirect('messageSuccess');
   } catch (error) {
-    res.render('about-us', {message: "Unable To Send The Message. Please Try Again..."});
+    res.render('about-us', {message: "Unable To Send The Message. Please Try Again...", shortDescription: "With Weemaple, you can search for jobs online to find the next step in your career journey. We're to help you every stage of your employment."});
   }
 });
 

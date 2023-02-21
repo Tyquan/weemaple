@@ -132,6 +132,9 @@ a:hover {
     color: black;
   }
 
+
+
+
   #jobs {
     display: flex;
     flex-direction: row;
@@ -178,6 +181,20 @@ a:hover {
   
   /* selected link */
   #websiteLinks:active {
+    color: blue;
+  }
+
+  /* Breadcrumbs */
+  #breadCrumb:active {
+    color: blue;
+  }
+  #breadcrumb:visited {
+    color: blue;
+  }
+  #breadCrumb:hover {
+    color: blue;
+  }
+  #breadCrumb {
     color: blue;
   }
 
@@ -386,7 +403,7 @@ a:hover {
     padding-left: 11.5%;
   }
   #jobContainer {
-    width: 23%;
+    width: 48%;
   }
   #title {
     font-size: 2rem;

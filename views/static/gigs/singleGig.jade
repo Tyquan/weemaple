@@ -4,6 +4,14 @@ block content
   include ../../partials/staticnav.jade
   div(class="container" id="container")
     div(class="row")
+      div(class="col-12")
+        a(href="/" id="breadCrumb") Home 
+        span(id="breadCrumb") -> 
+        form
+        
+        a(href="/category/"+ gig.slug + "/" + gig.id id="breadCrumb")= gig.category
+    br
+    div(class="row")
       div(class="col-md-12")
         h2(id="gigTitle")= gig.title
         h3(id="gigDetails")
