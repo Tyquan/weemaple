@@ -142,14 +142,15 @@ a:hover {
   }
   
   #jobContainer {
-    width: 48%;
+    width: 100%;
     background-color: #f5f6fa;
+    margin-bottom: 5%;
     color: white;
     padding: 2%;
-    margin: 1%;
+    /* margin: 1%; */
     border: 1px solid #40739e;
     border-radius: 10px;
-  }
+}
 
   #error {
     color: red;
