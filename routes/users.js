@@ -1,10 +1,10 @@
 var express = require('express');
 const slugify = require('slugify');
 var router = express.Router();
-const Gig = require('../Models/Gig');
-const Contact = require('../Models/ContactMessage');
+const Gig = require('../controllers/gig/Gig');
+const Contact = require('../controllers/contactMessage/ContactMessage');
 const Training = require('../Models/Training');
-const { findByIdAndDelete } = require('../Models/Gig');
+const { findByIdAndDelete } = require('../controllers/gig/Gig');
 
 function sortByDate (data) {
   return data.sort((a, b) => {

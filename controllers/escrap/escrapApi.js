@@ -1,8 +1,8 @@
 const express = require('express');
 const EscrapApi = express.Router();
-const escrapController = require('../controllers/escrapController');
-const ROLES_LIST = require('../Config/roles_list');
-const verifyRoles = require('../middleware/verifyRoles');
+const escrapController = require('./escrapController');
+const ROLES_LIST = require('../../Config/roles_list');
+const verifyRoles = require('../../middleware/verifyRoles');
 
 EscrapApi.route('/')
     .get(escrapController.getEscraps)

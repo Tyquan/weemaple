@@ -1,5 +1,5 @@
-const databaseApi = require('./databaseApi/databaseApi');
-const Article = require('../Models/Article');
+const databaseApi = require('../databaseApi/databaseApi');
+const Article = require('./Article');
 
 const getArticles = (req, res) => {
     databaseApi.GetData(Article, (articles, error) => {

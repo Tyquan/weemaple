@@ -1,6 +1,6 @@
 const express = require('express');
 const slugify = require('slugify');
-const Gig = require('../Models/Gig');
+const Gig = require('../controllers/gig/Gig');
 const Training = require('../Models/Training');
 const router = express.Router();
 

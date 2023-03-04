@@ -1,8 +1,8 @@
 const express = require('express');
 const VideoApi = express.Router();
-const videoController = require('../controllers/videoController');
-const ROLES_LIST = require('../Config/roles_list');
-const verifyRoles = require('../middleware/verifyRoles');
+const videoController = require('./videoController');
+const ROLES_LIST = require('../../Config/roles_list');
+const verifyRoles = require('../../middleware/verifyRoles');
 
 VideoApi.route('/')
     .get(videoController.getVideos)

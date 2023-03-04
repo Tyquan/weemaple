@@ -1,5 +1,5 @@
-const databaseApi = require('./databaseApi/databaseApi');
-const User = require('../Models/User');
+const databaseApi = require('../databaseApi/databaseApi');
+const User = require('./User');
 
 const getUsers = (req, res) => {
     databaseApi.GetData(User, (users, error) => {

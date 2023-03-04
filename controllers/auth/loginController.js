@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const User = require('../../Models/User');
+const User = require('../user/User');
 
 module.exports.handleLogin = async (req, res) => {
     const cookies = req.cookies;

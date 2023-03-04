@@ -1,8 +1,8 @@
 const express = require('express');
 const UserApi = express.Router();
-const ROLES_LIST = require('../Config/roles_list');
-const verifyRoles = require('../middleware/verifyRoles');
-const userController = require('../controllers/userController');
+const ROLES_LIST = require('../../Config/roles_list');
+const verifyRoles = require('../../middleware/verifyRoles');
+const userController = require('./userController');
 
 UserApi.route('/')
     .get(verifyRoles(ROLES_LIST.Admin, ROLES_LIST.Editor, ROLES_LIST.Employee, ROLES_LIST.User), userController.getUsers)

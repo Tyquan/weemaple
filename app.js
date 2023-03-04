@@ -9,16 +9,16 @@ const index = require('./routes/index');
 const auth = require('./routes/auth');
 const users = require('./routes/users')
 
-const register = require('./API/auth/registerApi');
-const login = require('./API/auth/loginApi');
-const refresh = require('./API/auth/refreshApi');
-const logout = require('./API/auth/logoutApi');
-const usersApi = require('./API/userApi');
-const messages = require('./API/contactMessageApi');
-const articles = require('./API/articleApi');
-const escraps = require('./API/escrapApi');
-const gigs = require('./API/gigApi');
-const videos = require('./API/videoApi');
+const register = require('./controllers/auth/registerApi');
+const login = require('./controllers/auth/loginApi');
+const refresh = require('./controllers/auth/refreshApi');
+const logout = require('./controllers/auth/logoutApi');
+const usersApi = require('./controllers/user/userApi');
+const messages = require('./controllers/contactMessage/contactMessageApi');
+const articles = require('./controllers/article/articleApi');
+const escraps = require('./controllers/escrap/escrapApi');
+const gigs = require('./controllers/gig/gigApi');
+const videos = require('./controllers/video/videoApi');
 
 const organizations = require('./controllers/organization/organizationApi');
 
