@@ -58,7 +58,7 @@ app.use('/api/v1/videos', videos);
 app.use('/api/v1/organizations', organizations);
 app.use('/api/v1/organizationMetas', organizationMetas);
 app.use('/api/v1/employees', employees);
-app.use('/api/v1/perssions', permissions);
+app.use('/api/v1/permissions', permissions);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
