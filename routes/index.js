@@ -1,7 +1,7 @@
 const express = require('express');
 const slugify = require('slugify');
 const Gig = require('../controllers/gig/Gig');
-const Training = require('../Models/Training');
+const Training = require('../controllers/training/Training');
 const router = express.Router();
 
 const getPagination = (page, size) => {

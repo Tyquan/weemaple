@@ -3,7 +3,7 @@ const slugify = require('slugify');
 var router = express.Router();
 const Gig = require('../controllers/gig/Gig');
 const Contact = require('../controllers/contactMessage/ContactMessage');
-const Training = require('../Models/Training');
+const Training = require('../controllers/training/Training');
 const { findByIdAndDelete } = require('../controllers/gig/Gig');
 
 function sortByDate (data) {
