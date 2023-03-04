@@ -2,79 +2,29 @@ const mongoose = require("mongoose");
 
 const UserSchema = mongoose.Schema({
     firstName: {
-        type: String,
-        default: 'N/A'
+        type: String
     },
+    middleName: {type: String},
     lastName: {
-        type: String,
-        default: 'N/A'
+        type: String
     },
     email: {
         type: String,
         unique: true,
         required: true
     },
-    displayName: {
+    mobile: {type: String},
+    userName: {
         type: String
     },
-    roles: {
-        User: {
-            type: Number,
-            default: 2001
-        },
-        Editor: Number,
-        Employee: Number,
-        Admin: Number
-    },
     refreshToken: [String],
-    loggedIn: {
-        type: Boolean,
-        default: 'false'
-    },
     password: {
         type: String,
         required: true
     },
-    clearenceLevel: {
-        type: Number,
-        default: 0
-    },
-    gigs: [{
-        gigId: {
-            type: String
-        },
-        reference: {
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: 'Gig'
-        }
-    }],
-    articles: [{
-        articleId: {
-            type: String
-        },
-        reference: {
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: 'Article'
-        }
-    }],
-    escraps: [{
-        escrapId: {
-            type: String
-        },
-        reference: {
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: 'Escrap'
-        }
-    }],
-    videos: [{
-        videoId: {
-            type: String
-        },
-        reference: {
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: 'Video'
-        }
-    }],
+    lastLogin: {type: Date},
+    intro: {type: String},
+    profile: {type: String},
     creationDate: {
         type: Date,
         default: Date.now()
