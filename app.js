@@ -20,6 +20,8 @@ const escraps = require('./API/escrapApi');
 const gigs = require('./API/gigApi');
 const videos = require('./API/videoApi');
 
+const organizations = require('./controllers/organization/organizationApi');
+
 const app = express();
 
 Middleware.init(app);
@@ -27,7 +29,7 @@ Middleware.init(app);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public/images/fav', 'favicon.ico')));
 
-// view engine setupnpm 
+// view engine setupnpm
 app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -50,7 +52,7 @@ app.use('/api/v1/articles', articles);
 app.use('/api/v1/escraps', escraps);
 app.use('/api/v1/gigs', gigs);
 app.use('/api/v1/videos', videos);
-
+app.use('/api/v1/organizations', organizations);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
