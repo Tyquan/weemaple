@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const User = require('../user/User');
+const User = require('../../user/User');
 
 module.exports.handleLogin = async (req, res) => {
     const cookies = req.cookies;
@@ -10,22 +10,17 @@ module.exports.handleLogin = async (req, res) => {
     if (!user.email || !user.password) return res.status(400).json({ 'message': 'email and password are required.' });
 
     const foundUser = await User.findOne({ email: user.email }).exec();
-    if (!foundUser) return res.sendStatus(401); //Unauthorized 
-    // evaluate password 
+    if (!foundUser) return res.sendStatus(401); //Unauthorized
+    // evaluate password
     const match = await bcrypt.compare(user.password, foundUser.password);
     if (match) {
-        const roles = Object.values(foundUser.roles).filter(Boolean);
         // create JWTs
         const accessToken = jwt.sign(
-            {
-                "UserInfo": {
-                    "email": foundUser.email,
-                    "roles": roles
-                }
-            },
+            { "email": foundUser.email },
             process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: '1h' }
-        ); 
+            { expiresIn: '15m' }
+        );
+
         const newRefreshToken = jwt.sign(
             { "email": foundUser.email },
             process.env.REFRESH_TOKEN_SECRET,

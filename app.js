@@ -9,10 +9,10 @@ const index = require('./routes/index');
 const auth = require('./routes/auth');
 const users = require('./routes/users')
 
-const register = require('./controllers/auth/registerApi');
-const login = require('./controllers/auth/loginApi');
-const refresh = require('./controllers/auth/refreshApi');
-const logout = require('./controllers/auth/logoutApi');
+const register = require('./controllers/auth/register/registerApi');
+const login = require('./controllers/auth/login/loginApi');
+const refresh = require('./controllers/auth/refresh/refreshApi');
+const logout = require('./controllers/auth/logout/logoutApi');
 const usersApi = require('./controllers/user/userApi');
 const messages = require('./controllers/contactMessage/contactMessageApi');
 const articles = require('./controllers/article/articleApi');
