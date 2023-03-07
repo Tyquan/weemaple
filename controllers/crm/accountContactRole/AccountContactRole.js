@@ -1,18 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const CampaignMemberSchema = Schema({
+const AccountContactRoleSchema = Schema({
     userId: {type: String},
-    campaignId: {type: String},
-    leadId: {type: String}, // client possible leads
-    memberId: {type: String},
+    accountId: {type: String},
     contactId: {type: String},
-    campaignRole: {type: String},
     createdBy: {type: String},
     updatedBy: {type: String},
-    summary: {type: String},
-    startDate: {type: Date},
-    endDate: {type: Date},
     otherDetails: {type: String},
     status: {type: String},
     createdAt: {
@@ -25,4 +19,4 @@ const CampaignMemberSchema = Schema({
     }
 });
 
-module.exports = mongoose.model("CampaignMember", CampaignMemberSchema);;
+module.exports = mongoose.model("AccountContactRole", AccountContactRoleSchema);;
