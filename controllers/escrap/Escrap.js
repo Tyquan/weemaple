@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const EscrapSchema = mongoose.Schema({
+    userId: {type: String},
     name: {
         type: String,
         default: 'No Name Given'

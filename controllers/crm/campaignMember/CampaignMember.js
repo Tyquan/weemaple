@@ -1,14 +1,18 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const OrganizationSchema = Schema({
+const CampaignMemberSchema = Schema({
     userId: {type: String},
+    campaignId: {type: String},
+    leadId: {type: String}, // client possible leads
+    memberId: {type: String},
+    campaignRole: {type: String},
     createdBy: {type: String},
     updatedBy: {type: String},
-    title: {type: String},
-    metaTitle: {type: String},
-    slug: {type: String},
     summary: {type: String},
+    startDate: {type: Date},
+    endDate: {type: Date},
+    otherDetails: {type: String},
     status: {type: String},
     createdAt: {
         type: Date,
@@ -17,9 +21,7 @@ const OrganizationSchema = Schema({
     updatedAt: {
         type: Date,
         default: Date.now()
-    },
-    profile: {type: String},
-    content: {type: String}
+    }
 });
 
-module.exports = mongoose.model("Organization", OrganizationSchema);;
+module.exports = mongoose.model("CampaignMember", CampaignMemberSchema);;

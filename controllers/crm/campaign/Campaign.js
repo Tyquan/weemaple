@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const OrganizationSchema = Schema({
+const CampaignSchema = Schema({
     userId: {type: String},
     createdBy: {type: String},
     updatedBy: {type: String},
@@ -9,6 +9,11 @@ const OrganizationSchema = Schema({
     metaTitle: {type: String},
     slug: {type: String},
     summary: {type: String},
+    objectives: {type: String},
+    sponsor: {type: String},
+    startDate: {type: Date},
+    endDate: {type: Date},
+    otherDetails: {type: String},
     status: {type: String},
     createdAt: {
         type: Date,
@@ -22,4 +27,4 @@ const OrganizationSchema = Schema({
     content: {type: String}
 });
 
-module.exports = mongoose.model("Organization", OrganizationSchema);;
+module.exports = mongoose.model("Campaign", CampaignSchema);;
