@@ -26,6 +26,8 @@ const employees = require('./controllers/employee/employeeApi');
 const permissions = require('./controllers/permission/permissionApi');
 const roles = require('./controllers/role/roleApi');
 const rolePermissions = require('./controllers/rolePermission/rolePermissionApi');
+const newsLetter = require('./controllers/newsletter/newsletterApi');
+const emailSubscribers = require('./controllers/emailSubscriber/emailSubscriberApi');
 
 const app = express();
 
@@ -63,6 +65,8 @@ app.use('/api/v1/employees', employees);
 app.use('/api/v1/permissions', permissions);
 app.use('/api/v1/roles', roles);
 app.use('/api/v1/rolePermissions', rolePermissions);
+app.use('/api/v1/newsletters', newsLetter);
+app.use('/api/v1/emailSubscribers', emailSubscribers);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
